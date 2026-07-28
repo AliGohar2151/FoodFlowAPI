@@ -402,7 +402,8 @@ export const ModelName = {
   Permission: 'Permission',
   UserRole: 'UserRole',
   RolePermission: 'RolePermission',
-  RefreshToken: 'RefreshToken'
+  RefreshToken: 'RefreshToken',
+  Restaurant: 'Restaurant'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -418,7 +419,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "role" | "permission" | "userRole" | "rolePermission" | "refreshToken"
+    modelProps: "user" | "role" | "permission" | "userRole" | "rolePermission" | "refreshToken" | "restaurant"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -866,6 +867,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Restaurant: {
+      payload: Prisma.$RestaurantPayload<ExtArgs>
+      fields: Prisma.RestaurantFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RestaurantFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RestaurantFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantPayload>
+        }
+        findFirst: {
+          args: Prisma.RestaurantFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RestaurantFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantPayload>
+        }
+        findMany: {
+          args: Prisma.RestaurantFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantPayload>[]
+        }
+        create: {
+          args: Prisma.RestaurantCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantPayload>
+        }
+        createMany: {
+          args: Prisma.RestaurantCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RestaurantCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantPayload>[]
+        }
+        delete: {
+          args: Prisma.RestaurantDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantPayload>
+        }
+        update: {
+          args: Prisma.RestaurantUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantPayload>
+        }
+        deleteMany: {
+          args: Prisma.RestaurantDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RestaurantUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RestaurantUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantPayload>[]
+        }
+        upsert: {
+          args: Prisma.RestaurantUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantPayload>
+        }
+        aggregate: {
+          args: Prisma.RestaurantAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRestaurant>
+        }
+        groupBy: {
+          args: Prisma.RestaurantGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RestaurantGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RestaurantCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RestaurantCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -985,6 +1060,30 @@ export const RefreshTokenScalarFieldEnum = {
 export type RefreshTokenScalarFieldEnum = (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum]
 
 
+export const RestaurantScalarFieldEnum = {
+  id: 'id',
+  ownerId: 'ownerId',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  logoUrl: 'logoUrl',
+  bannerUrl: 'bannerUrl',
+  cuisineTypes: 'cuisineTypes',
+  status: 'status',
+  isOpen: 'isOpen',
+  minOrderAmount: 'minOrderAmount',
+  deliveryFee: 'deliveryFee',
+  estimatedDeliveryTimeMinutes: 'estimatedDeliveryTimeMinutes',
+  rating: 'rating',
+  ratingCount: 'ratingCount',
+  rejectionReason: 'rejectionReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RestaurantScalarFieldEnum = (typeof RestaurantScalarFieldEnum)[keyof typeof RestaurantScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1065,6 +1164,34 @@ export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
+ * Reference to a field of type 'RestaurantStatus'
+ */
+export type EnumRestaurantStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RestaurantStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'RestaurantStatus[]'
+ */
+export type ListEnumRestaurantStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RestaurantStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal'
+ */
+export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal[]'
+ */
+export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -1075,6 +1202,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 /**
@@ -1234,6 +1375,7 @@ export type GlobalOmitConfig = {
   userRole?: Prisma.UserRoleOmit
   rolePermission?: Prisma.RolePermissionOmit
   refreshToken?: Prisma.RefreshTokenOmit
+  restaurant?: Prisma.RestaurantOmit
 }
 
 /* Types for Logging */

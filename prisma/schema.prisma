@@ -87,9 +87,9 @@ model User {
   // Relations
   roles             UserRole[]
   refreshTokens     RefreshToken[]
+  ownedRestaurants  Restaurant[] @relation("OwnedRestaurants")
 
   // Future relations (added in later phases)
-  // ownedRestaurants  Restaurant[]
   // staffAssignments  RestaurantStaff[]
   // addresses         Address[]
   // cart              Cart?
@@ -175,4 +175,33 @@ model RefreshToken {
   @@index([userId])
   @@index([tokenHash])
   @@map("refresh_tokens")
+}
+
+model Restaurant {
+  id                           String           @id @default(cuid())
+  ownerId                      String
+  name                         String
+  slug                         String           @unique
+  description                  String?
+  logoUrl                      String?
+  bannerUrl                    String?
+  cuisineTypes                 String[]
+  status                       RestaurantStatus @default(PENDING_APPROVAL)
+  isOpen                       Boolean          @default(true)
+  minOrderAmount               Decimal          @default(0.00) @db.Decimal(10, 2)
+  deliveryFee                  Decimal          @default(0.00) @db.Decimal(10, 2)
+  estimatedDeliveryTimeMinutes Int              @default(30)
+  rating                       Decimal          @default(0.00) @db.Decimal(3, 2)
+  ratingCount                  Int              @default(0)
+  rejectionReason              String?
+  createdAt                    DateTime         @default(now())
+  updatedAt                    DateTime         @updatedAt
+
+  // Relations
+  owner User @relation("OwnedRestaurants", fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@index([ownerId])
+  @@index([status])
+  @@index([slug])
+  @@map("restaurants")
 }

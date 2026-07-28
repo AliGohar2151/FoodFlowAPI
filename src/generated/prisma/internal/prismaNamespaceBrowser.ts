@@ -56,7 +56,8 @@ export const ModelName = {
   Permission: 'Permission',
   UserRole: 'UserRole',
   RolePermission: 'RolePermission',
-  RefreshToken: 'RefreshToken'
+  RefreshToken: 'RefreshToken',
+  Restaurant: 'Restaurant'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -153,6 +154,30 @@ export const RefreshTokenScalarFieldEnum = {
 } as const
 
 export type RefreshTokenScalarFieldEnum = (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum]
+
+
+export const RestaurantScalarFieldEnum = {
+  id: 'id',
+  ownerId: 'ownerId',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  logoUrl: 'logoUrl',
+  bannerUrl: 'bannerUrl',
+  cuisineTypes: 'cuisineTypes',
+  status: 'status',
+  isOpen: 'isOpen',
+  minOrderAmount: 'minOrderAmount',
+  deliveryFee: 'deliveryFee',
+  estimatedDeliveryTimeMinutes: 'estimatedDeliveryTimeMinutes',
+  rating: 'rating',
+  ratingCount: 'ratingCount',
+  rejectionReason: 'rejectionReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RestaurantScalarFieldEnum = (typeof RestaurantScalarFieldEnum)[keyof typeof RestaurantScalarFieldEnum]
 
 
 export const SortOrder = {

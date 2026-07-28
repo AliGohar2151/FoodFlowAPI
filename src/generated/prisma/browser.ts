@@ -47,3 +47,8 @@ export type RolePermission = Prisma.RolePermissionModel
  * 
  */
 export type RefreshToken = Prisma.RefreshTokenModel
+/**
+ * Model Restaurant
+ * 
+ */
+export type Restaurant = Prisma.RestaurantModel
