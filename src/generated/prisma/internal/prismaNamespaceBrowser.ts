@@ -57,7 +57,8 @@ export const ModelName = {
   UserRole: 'UserRole',
   RolePermission: 'RolePermission',
   RefreshToken: 'RefreshToken',
-  Restaurant: 'Restaurant'
+  Restaurant: 'Restaurant',
+  RestaurantStaff: 'RestaurantStaff'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -178,6 +179,19 @@ export const RestaurantScalarFieldEnum = {
 } as const
 
 export type RestaurantScalarFieldEnum = (typeof RestaurantScalarFieldEnum)[keyof typeof RestaurantScalarFieldEnum]
+
+
+export const RestaurantStaffScalarFieldEnum = {
+  id: 'id',
+  restaurantId: 'restaurantId',
+  userId: 'userId',
+  role: 'role',
+  isPrimary: 'isPrimary',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RestaurantStaffScalarFieldEnum = (typeof RestaurantStaffScalarFieldEnum)[keyof typeof RestaurantStaffScalarFieldEnum]
 
 
 export const SortOrder = {

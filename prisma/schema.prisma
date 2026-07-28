@@ -67,6 +67,13 @@ enum ReviewStatus {
   REMOVED
 }
 
+enum StaffRole {
+  MANAGER
+  KITCHEN_STAFF
+  DELIVERY_RIDER
+  CASHIER
+}
+
 // ─── Identity Domain ─────────────────────────────────────────────────────────
 
 model User {
@@ -87,7 +94,8 @@ model User {
   // Relations
   roles             UserRole[]
   refreshTokens     RefreshToken[]
-  ownedRestaurants  Restaurant[] @relation("OwnedRestaurants")
+  ownedRestaurants  Restaurant[]      @relation("OwnedRestaurants")
+  staffAssignments  RestaurantStaff[]
 
   // Future relations (added in later phases)
   // staffAssignments  RestaurantStaff[]
@@ -198,10 +206,30 @@ model Restaurant {
   updatedAt                    DateTime         @updatedAt
 
   // Relations
-  owner User @relation("OwnedRestaurants", fields: [ownerId], references: [id], onDelete: Cascade)
+  owner User              @relation("OwnedRestaurants", fields: [ownerId], references: [id], onDelete: Cascade)
+  staff RestaurantStaff[]
 
   @@index([ownerId])
   @@index([status])
   @@index([slug])
   @@map("restaurants")
+}
+
+model RestaurantStaff {
+  id           String    @id @default(cuid())
+  restaurantId String
+  userId       String
+  role         StaffRole @default(KITCHEN_STAFF)
+  isPrimary    Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  // Relations
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([restaurantId, userId])
+  @@index([restaurantId])
+  @@index([userId])
+  @@map("restaurant_staff")
 }

@@ -1,11 +1,13 @@
 import { Router, type IRouter } from "express";
 import { restaurantsController } from "./restaurants.controller.js";
+import { staffController } from "./staff/staff.controller.js";
 import {
   createRestaurantSchema,
   updateRestaurantSchema,
   updateRestaurantStatusSchema,
   queryRestaurantsSchema,
 } from "./restaurants.schema.js";
+import { addStaffSchema, updateStaffRoleSchema } from "./staff/staff.schema.js";
 import {
   authenticate,
   requirePermission,
@@ -61,6 +63,33 @@ router.patch(
   requirePermission("restaurants.approve"),
   validate({ body: updateRestaurantStatusSchema }),
   asyncHandler((req, res) => restaurantsController.updateRestaurantStatus(req, res)),
+);
+
+// ── Restaurant Staff Sub-routes ──────────────────────────────────────────────
+router.post(
+  "/:restaurantId/staff",
+  asyncHandler(authenticate),
+  validate({ body: addStaffSchema }),
+  asyncHandler((req, res) => staffController.addStaffMember(req, res)),
+);
+
+router.get(
+  "/:restaurantId/staff",
+  asyncHandler(authenticate),
+  asyncHandler((req, res) => staffController.getRestaurantStaff(req, res)),
+);
+
+router.patch(
+  "/:restaurantId/staff/:userId",
+  asyncHandler(authenticate),
+  validate({ body: updateStaffRoleSchema }),
+  asyncHandler((req, res) => staffController.updateStaffMember(req, res)),
+);
+
+router.delete(
+  "/:restaurantId/staff/:userId",
+  asyncHandler(authenticate),
+  asyncHandler((req, res) => staffController.removeStaffMember(req, res)),
 );
 
 export default router;

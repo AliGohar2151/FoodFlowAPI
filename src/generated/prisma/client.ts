@@ -76,3 +76,8 @@ export type RefreshToken = Prisma.RefreshTokenModel
  * 
  */
 export type Restaurant = Prisma.RestaurantModel
+/**
+ * Model RestaurantStaff
+ * 
+ */
+export type RestaurantStaff = Prisma.RestaurantStaffModel

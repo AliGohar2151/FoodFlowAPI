@@ -79,3 +79,13 @@ export const ReviewStatus = {
 } as const
 
 export type ReviewStatus = (typeof ReviewStatus)[keyof typeof ReviewStatus]
+
+
+export const StaffRole = {
+  MANAGER: 'MANAGER',
+  KITCHEN_STAFF: 'KITCHEN_STAFF',
+  DELIVERY_RIDER: 'DELIVERY_RIDER',
+  CASHIER: 'CASHIER'
+} as const
+
+export type StaffRole = (typeof StaffRole)[keyof typeof StaffRole]

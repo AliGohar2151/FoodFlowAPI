@@ -236,6 +236,23 @@ export type IntWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedIntFilter<$PrismaModel>
 }
 
+export type EnumStaffRoleFilter<$PrismaModel = never> = {
+  equals?: $Enums.StaffRole | Prisma.EnumStaffRoleFieldRefInput<$PrismaModel>
+  in?: $Enums.StaffRole[] | Prisma.ListEnumStaffRoleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.StaffRole[] | Prisma.ListEnumStaffRoleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumStaffRoleFilter<$PrismaModel> | $Enums.StaffRole
+}
+
+export type EnumStaffRoleWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.StaffRole | Prisma.EnumStaffRoleFieldRefInput<$PrismaModel>
+  in?: $Enums.StaffRole[] | Prisma.ListEnumStaffRoleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.StaffRole[] | Prisma.ListEnumStaffRoleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumStaffRoleWithAggregatesFilter<$PrismaModel> | $Enums.StaffRole
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumStaffRoleFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumStaffRoleFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -469,6 +486,23 @@ export type NestedFloatFilter<$PrismaModel = never> = {
   gt?: number | Prisma.FloatFieldRefInput<$PrismaModel>
   gte?: number | Prisma.FloatFieldRefInput<$PrismaModel>
   not?: Prisma.NestedFloatFilter<$PrismaModel> | number
+}
+
+export type NestedEnumStaffRoleFilter<$PrismaModel = never> = {
+  equals?: $Enums.StaffRole | Prisma.EnumStaffRoleFieldRefInput<$PrismaModel>
+  in?: $Enums.StaffRole[] | Prisma.ListEnumStaffRoleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.StaffRole[] | Prisma.ListEnumStaffRoleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumStaffRoleFilter<$PrismaModel> | $Enums.StaffRole
+}
+
+export type NestedEnumStaffRoleWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.StaffRole | Prisma.EnumStaffRoleFieldRefInput<$PrismaModel>
+  in?: $Enums.StaffRole[] | Prisma.ListEnumStaffRoleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.StaffRole[] | Prisma.ListEnumStaffRoleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumStaffRoleWithAggregatesFilter<$PrismaModel> | $Enums.StaffRole
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumStaffRoleFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumStaffRoleFilter<$PrismaModel>
 }
 
 

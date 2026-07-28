@@ -418,7 +418,7 @@ Phase 33 — Final Documentation       NOT STARTED
 
 ```text
 Current Phase: Phase 10 — Restaurant Staff Module
-Current Status: NOT STARTED
+Current Status: IN PROGRESS
 ```
 
 Phases 1 through 9 are complete. Restaurants Module (Schema definition, application creation, owner role upgrade, admin approval workflow, unique slug generation, search & discovery filtering, ownership policy protection) is fully implemented, verified, and test-covered.
