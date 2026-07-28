@@ -58,7 +58,9 @@ export const ModelName = {
   RolePermission: 'RolePermission',
   RefreshToken: 'RefreshToken',
   Restaurant: 'Restaurant',
-  RestaurantStaff: 'RestaurantStaff'
+  RestaurantStaff: 'RestaurantStaff',
+  MenuCategory: 'MenuCategory',
+  MenuItem: 'MenuItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -192,6 +194,41 @@ export const RestaurantStaffScalarFieldEnum = {
 } as const
 
 export type RestaurantStaffScalarFieldEnum = (typeof RestaurantStaffScalarFieldEnum)[keyof typeof RestaurantStaffScalarFieldEnum]
+
+
+export const MenuCategoryScalarFieldEnum = {
+  id: 'id',
+  restaurantId: 'restaurantId',
+  name: 'name',
+  description: 'description',
+  displayOrder: 'displayOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MenuCategoryScalarFieldEnum = (typeof MenuCategoryScalarFieldEnum)[keyof typeof MenuCategoryScalarFieldEnum]
+
+
+export const MenuItemScalarFieldEnum = {
+  id: 'id',
+  restaurantId: 'restaurantId',
+  categoryId: 'categoryId',
+  name: 'name',
+  description: 'description',
+  imageUrl: 'imageUrl',
+  price: 'price',
+  isAvailable: 'isAvailable',
+  isVegetarian: 'isVegetarian',
+  isVegan: 'isVegan',
+  isGlutenFree: 'isGlutenFree',
+  isSpicy: 'isSpicy',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MenuItemScalarFieldEnum = (typeof MenuItemScalarFieldEnum)[keyof typeof MenuItemScalarFieldEnum]
 
 
 export const SortOrder = {

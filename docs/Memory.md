@@ -418,7 +418,7 @@ Phase 33 — Final Documentation       NOT STARTED
 
 ```text
 Current Phase: Phase 11 — Menus Module
-Current Status: NOT STARTED
+Current Status: IN PROGRESS
 ```
 
 Phases 1 through 10 are complete. Restaurant Staff Module (`RestaurantStaff` model, `StaffRole` enum, staff assignment, role update, remove staff member, owner policy enforcement) is fully implemented, verified, and test-covered.

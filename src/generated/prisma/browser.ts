@@ -57,3 +57,13 @@ export type Restaurant = Prisma.RestaurantModel
  * 
  */
 export type RestaurantStaff = Prisma.RestaurantStaffModel
+/**
+ * Model MenuCategory
+ * 
+ */
+export type MenuCategory = Prisma.MenuCategoryModel
+/**
+ * Model MenuItem
+ * 
+ */
+export type MenuItem = Prisma.MenuItemModel
