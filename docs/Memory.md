@@ -391,7 +391,7 @@ Phase 11 — Menus                     COMPLETE
 Phase 12 — Addresses                 COMPLETE
 Phase 13 — Discovery                 COMPLETE
 Phase 14 — Cart                      COMPLETE
-Phase 15 — Orders                    NOT STARTED
+Phase 15 — Orders                    COMPLETE
 Phase 16 — Order State Machine       NOT STARTED
 Phase 17 — Payments                  NOT STARTED
 Phase 18 — Delivery                  NOT STARTED
@@ -417,13 +417,13 @@ Phase 33 — Final Documentation       NOT STARTED
 # 6. Current Development Phase
 
 ```text
-Current Phase: Phase 15 — Order Placement & Management Module
+Current Phase: Phase 16 — Order State Machine Module
 Current Status: NOT STARTED
 ```
 
-Phases 1 through 14 are complete. Cart Module (`Cart` & `CartItem` models, single-restaurant cart enforcement, automatic cart totals & tax calculations, clear cart option, Docker PostgreSQL & Redis integration) is fully implemented, verified, and test-covered.
+Phases 1 through 15 are complete. Order Placement & Management Module (`Order` & `OrderItem` models, atomic checkout order placement flow from cart, price/name snapshotting, address snapshotting, order history listing for users, owners & staff, order details, ABAC Policy enforcement, order cancellation policy) is fully implemented, verified, and test-covered.
 
-Next implementation task: Phase 15 — Order Placement & Management Module (`Order` & `OrderItem` models, order placement checkout flow, order retrieval for customers, owners & staff, order cancellation policy).
+Next implementation task: Phase 16 — Order State Machine Module (state transitions: `PENDING` → `CONFIRMED` → `PREPARING` → `READY_FOR_PICKUP` → `ASSIGNED` → `PICKED_UP` → `OUT_FOR_DELIVERY` → `DELIVERED`, role-based state transition permissions, transition history log).
 
 The first implementation milestone is:
 
