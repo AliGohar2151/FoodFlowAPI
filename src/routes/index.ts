@@ -5,6 +5,7 @@ import rbacRoutes from "../modules/rbac/rbac.routes.js";
 import userRoutes from "../modules/users/users.routes.js";
 import restaurantRoutes from "../modules/restaurants/restaurants.routes.js";
 import menuRoutes from "../modules/menus/menus.routes.js";
+import addressRoutes from "../modules/addresses/addresses.routes.js";
 
 const router: IRouter = Router();
 
@@ -32,8 +33,10 @@ router.use("/restaurants", restaurantRoutes);
 // Menus module
 router.use("/menus", menuRoutes);
 
+// Addresses module
+router.use("/addresses", addressRoutes);
+
 // ── Future modules (added per phase) ────────────────────────────────────────
-// router.use("/addresses", addressRoutes);
 // router.use("/restaurants", discoveryRoutes);
 // router.use("/carts", cartRoutes);
 // router.use("/orders", orderRoutes);

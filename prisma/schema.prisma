@@ -96,6 +96,7 @@ model User {
   refreshTokens     RefreshToken[]
   ownedRestaurants  Restaurant[]      @relation("OwnedRestaurants")
   staffAssignments  RestaurantStaff[]
+  addresses         Address[]
 
   // Future relations (added in later phases)
   // staffAssignments  RestaurantStaff[]
@@ -278,4 +279,28 @@ model MenuItem {
   @@index([restaurantId])
   @@index([categoryId])
   @@map("menu_items")
+}
+
+model Address {
+  id                   String   @id @default(cuid())
+  userId               String
+  title                String   // e.g. "Home", "Work"
+  streetAddress        String
+  apartment            String?
+  city                 String
+  state                String?
+  postalCode           String
+  country              String   @default("US")
+  latitude             Decimal? @db.Decimal(10, 8)
+  longitude            Decimal? @db.Decimal(11, 8)
+  deliveryInstructions String?
+  isDefault            Boolean  @default(false)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("addresses")
 }

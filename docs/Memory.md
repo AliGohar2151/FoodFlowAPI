@@ -418,7 +418,7 @@ Phase 33 — Final Documentation       NOT STARTED
 
 ```text
 Current Phase: Phase 12 — Delivery Addresses Module
-Current Status: NOT STARTED
+Current Status: IN PROGRESS
 ```
 
 Phases 1 through 11 are complete. Menus Module (`MenuCategory` and `MenuItem` models, category & menu item CRUD with restaurant scoping, dietary flags, pricing, display order, policy protection) is fully implemented, verified, and test-covered.

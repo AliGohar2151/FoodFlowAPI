@@ -91,3 +91,8 @@ export type MenuCategory = Prisma.MenuCategoryModel
  * 
  */
 export type MenuItem = Prisma.MenuItemModel
+/**
+ * Model Address
+ * 
+ */
+export type Address = Prisma.AddressModel
