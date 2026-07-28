@@ -97,6 +97,7 @@ model User {
   ownedRestaurants  Restaurant[]      @relation("OwnedRestaurants")
   staffAssignments  RestaurantStaff[]
   addresses         Address[]
+  cart              Cart?
 
   // Future relations (added in later phases)
   // staffAssignments  RestaurantStaff[]
@@ -213,6 +214,7 @@ model Restaurant {
   staff      RestaurantStaff[]
   categories MenuCategory[]
   menuItems  MenuItem[]
+  carts      Cart[]
 
   @@index([ownerId])
   @@index([status])
@@ -258,29 +260,67 @@ model MenuCategory {
 }
 
 model MenuItem {
-  id           String   @id @default(cuid())
+  id           String     @id @default(cuid())
   restaurantId String
   categoryId   String
   name         String
   description  String?
   imageUrl     String?
-  price        Decimal  @db.Decimal(10, 2)
-  isAvailable  Boolean  @default(true)
-  isVegetarian Boolean  @default(false)
-  isVegan      Boolean  @default(false)
-  isGlutenFree Boolean  @default(false)
-  isSpicy      Boolean  @default(false)
-  displayOrder Int      @default(0)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  price        Decimal    @db.Decimal(10, 2)
+  isAvailable  Boolean    @default(true)
+  isVegetarian Boolean    @default(false)
+  isVegan      Boolean    @default(false)
+  isGlutenFree Boolean    @default(false)
+  isSpicy      Boolean    @default(false)
+  displayOrder Int        @default(0)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
 
   // Relations
   restaurant Restaurant   @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
   category   MenuCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  cartItems  CartItem[]
 
   @@index([restaurantId])
   @@index([categoryId])
   @@map("menu_items")
+}
+
+model Cart {
+  id           String   @id @default(cuid())
+  userId       String   @unique
+  restaurantId String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  restaurant Restaurant? @relation(fields: [restaurantId], references: [id], onDelete: SetNull)
+  items      CartItem[]
+
+  @@index([userId])
+  @@index([restaurantId])
+  @@map("carts")
+}
+
+model CartItem {
+  id                  String   @id @default(cuid())
+  cartId              String
+  menuItemId          String
+  quantity            Int      @default(1)
+  unitPrice           Decimal  @db.Decimal(10, 2)
+  specialInstructions String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  // Relations
+  cart     Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  menuItem MenuItem @relation(fields: [menuItemId], references: [id], onDelete: Cascade)
+
+  @@unique([cartId, menuItemId])
+  @@index([cartId])
+  @@index([menuItemId])
+  @@map("cart_items")
 }
 
 model Address {

@@ -360,6 +360,7 @@ export type RestaurantWhereInput = {
   staff?: Prisma.RestaurantStaffListRelationFilter
   categories?: Prisma.MenuCategoryListRelationFilter
   menuItems?: Prisma.MenuItemListRelationFilter
+  carts?: Prisma.CartListRelationFilter
 }
 
 export type RestaurantOrderByWithRelationInput = {
@@ -387,6 +388,7 @@ export type RestaurantOrderByWithRelationInput = {
   staff?: Prisma.RestaurantStaffOrderByRelationAggregateInput
   categories?: Prisma.MenuCategoryOrderByRelationAggregateInput
   menuItems?: Prisma.MenuItemOrderByRelationAggregateInput
+  carts?: Prisma.CartOrderByRelationAggregateInput
 }
 
 export type RestaurantWhereUniqueInput = Prisma.AtLeast<{
@@ -417,6 +419,7 @@ export type RestaurantWhereUniqueInput = Prisma.AtLeast<{
   staff?: Prisma.RestaurantStaffListRelationFilter
   categories?: Prisma.MenuCategoryListRelationFilter
   menuItems?: Prisma.MenuItemListRelationFilter
+  carts?: Prisma.CartListRelationFilter
 }, "id" | "slug">
 
 export type RestaurantOrderByWithAggregationInput = {
@@ -497,6 +500,7 @@ export type RestaurantCreateInput = {
   staff?: Prisma.RestaurantStaffCreateNestedManyWithoutRestaurantInput
   categories?: Prisma.MenuCategoryCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemCreateNestedManyWithoutRestaurantInput
+  carts?: Prisma.CartCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantUncheckedCreateInput = {
@@ -523,6 +527,7 @@ export type RestaurantUncheckedCreateInput = {
   staff?: Prisma.RestaurantStaffUncheckedCreateNestedManyWithoutRestaurantInput
   categories?: Prisma.MenuCategoryUncheckedCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutRestaurantInput
+  carts?: Prisma.CartUncheckedCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantUpdateInput = {
@@ -549,6 +554,7 @@ export type RestaurantUpdateInput = {
   staff?: Prisma.RestaurantStaffUpdateManyWithoutRestaurantNestedInput
   categories?: Prisma.MenuCategoryUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUpdateManyWithoutRestaurantNestedInput
+  carts?: Prisma.CartUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantUncheckedUpdateInput = {
@@ -575,6 +581,7 @@ export type RestaurantUncheckedUpdateInput = {
   staff?: Prisma.RestaurantStaffUncheckedUpdateManyWithoutRestaurantNestedInput
   categories?: Prisma.MenuCategoryUncheckedUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUncheckedUpdateManyWithoutRestaurantNestedInput
+  carts?: Prisma.CartUncheckedUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantCreateManyInput = {
@@ -755,6 +762,11 @@ export type RestaurantScalarRelationFilter = {
   isNot?: Prisma.RestaurantWhereInput
 }
 
+export type RestaurantNullableScalarRelationFilter = {
+  is?: Prisma.RestaurantWhereInput | null
+  isNot?: Prisma.RestaurantWhereInput | null
+}
+
 export type RestaurantCreateNestedManyWithoutOwnerInput = {
   create?: Prisma.XOR<Prisma.RestaurantCreateWithoutOwnerInput, Prisma.RestaurantUncheckedCreateWithoutOwnerInput> | Prisma.RestaurantCreateWithoutOwnerInput[] | Prisma.RestaurantUncheckedCreateWithoutOwnerInput[]
   connectOrCreate?: Prisma.RestaurantCreateOrConnectWithoutOwnerInput | Prisma.RestaurantCreateOrConnectWithoutOwnerInput[]
@@ -876,6 +888,22 @@ export type RestaurantUpdateOneRequiredWithoutMenuItemsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.RestaurantUpdateToOneWithWhereWithoutMenuItemsInput, Prisma.RestaurantUpdateWithoutMenuItemsInput>, Prisma.RestaurantUncheckedUpdateWithoutMenuItemsInput>
 }
 
+export type RestaurantCreateNestedOneWithoutCartsInput = {
+  create?: Prisma.XOR<Prisma.RestaurantCreateWithoutCartsInput, Prisma.RestaurantUncheckedCreateWithoutCartsInput>
+  connectOrCreate?: Prisma.RestaurantCreateOrConnectWithoutCartsInput
+  connect?: Prisma.RestaurantWhereUniqueInput
+}
+
+export type RestaurantUpdateOneWithoutCartsNestedInput = {
+  create?: Prisma.XOR<Prisma.RestaurantCreateWithoutCartsInput, Prisma.RestaurantUncheckedCreateWithoutCartsInput>
+  connectOrCreate?: Prisma.RestaurantCreateOrConnectWithoutCartsInput
+  upsert?: Prisma.RestaurantUpsertWithoutCartsInput
+  disconnect?: Prisma.RestaurantWhereInput | boolean
+  delete?: Prisma.RestaurantWhereInput | boolean
+  connect?: Prisma.RestaurantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RestaurantUpdateToOneWithWhereWithoutCartsInput, Prisma.RestaurantUpdateWithoutCartsInput>, Prisma.RestaurantUncheckedUpdateWithoutCartsInput>
+}
+
 export type RestaurantCreateWithoutOwnerInput = {
   id?: string
   name: string
@@ -899,6 +927,7 @@ export type RestaurantCreateWithoutOwnerInput = {
   staff?: Prisma.RestaurantStaffCreateNestedManyWithoutRestaurantInput
   categories?: Prisma.MenuCategoryCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemCreateNestedManyWithoutRestaurantInput
+  carts?: Prisma.CartCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantUncheckedCreateWithoutOwnerInput = {
@@ -924,6 +953,7 @@ export type RestaurantUncheckedCreateWithoutOwnerInput = {
   staff?: Prisma.RestaurantStaffUncheckedCreateNestedManyWithoutRestaurantInput
   categories?: Prisma.MenuCategoryUncheckedCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutRestaurantInput
+  carts?: Prisma.CartUncheckedCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantCreateOrConnectWithoutOwnerInput = {
@@ -1001,6 +1031,7 @@ export type RestaurantCreateWithoutStaffInput = {
   owner: Prisma.UserCreateNestedOneWithoutOwnedRestaurantsInput
   categories?: Prisma.MenuCategoryCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemCreateNestedManyWithoutRestaurantInput
+  carts?: Prisma.CartCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantUncheckedCreateWithoutStaffInput = {
@@ -1026,6 +1057,7 @@ export type RestaurantUncheckedCreateWithoutStaffInput = {
   updatedAt?: Date | string
   categories?: Prisma.MenuCategoryUncheckedCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutRestaurantInput
+  carts?: Prisma.CartUncheckedCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantCreateOrConnectWithoutStaffInput = {
@@ -1067,6 +1099,7 @@ export type RestaurantUpdateWithoutStaffInput = {
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnedRestaurantsNestedInput
   categories?: Prisma.MenuCategoryUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUpdateManyWithoutRestaurantNestedInput
+  carts?: Prisma.CartUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantUncheckedUpdateWithoutStaffInput = {
@@ -1092,6 +1125,7 @@ export type RestaurantUncheckedUpdateWithoutStaffInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   categories?: Prisma.MenuCategoryUncheckedUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUncheckedUpdateManyWithoutRestaurantNestedInput
+  carts?: Prisma.CartUncheckedUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantCreateWithoutCategoriesInput = {
@@ -1117,6 +1151,7 @@ export type RestaurantCreateWithoutCategoriesInput = {
   owner: Prisma.UserCreateNestedOneWithoutOwnedRestaurantsInput
   staff?: Prisma.RestaurantStaffCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemCreateNestedManyWithoutRestaurantInput
+  carts?: Prisma.CartCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantUncheckedCreateWithoutCategoriesInput = {
@@ -1142,6 +1177,7 @@ export type RestaurantUncheckedCreateWithoutCategoriesInput = {
   updatedAt?: Date | string
   staff?: Prisma.RestaurantStaffUncheckedCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutRestaurantInput
+  carts?: Prisma.CartUncheckedCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantCreateOrConnectWithoutCategoriesInput = {
@@ -1183,6 +1219,7 @@ export type RestaurantUpdateWithoutCategoriesInput = {
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnedRestaurantsNestedInput
   staff?: Prisma.RestaurantStaffUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUpdateManyWithoutRestaurantNestedInput
+  carts?: Prisma.CartUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantUncheckedUpdateWithoutCategoriesInput = {
@@ -1208,6 +1245,7 @@ export type RestaurantUncheckedUpdateWithoutCategoriesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   staff?: Prisma.RestaurantStaffUncheckedUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUncheckedUpdateManyWithoutRestaurantNestedInput
+  carts?: Prisma.CartUncheckedUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantCreateWithoutMenuItemsInput = {
@@ -1233,6 +1271,7 @@ export type RestaurantCreateWithoutMenuItemsInput = {
   owner: Prisma.UserCreateNestedOneWithoutOwnedRestaurantsInput
   staff?: Prisma.RestaurantStaffCreateNestedManyWithoutRestaurantInput
   categories?: Prisma.MenuCategoryCreateNestedManyWithoutRestaurantInput
+  carts?: Prisma.CartCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantUncheckedCreateWithoutMenuItemsInput = {
@@ -1258,6 +1297,7 @@ export type RestaurantUncheckedCreateWithoutMenuItemsInput = {
   updatedAt?: Date | string
   staff?: Prisma.RestaurantStaffUncheckedCreateNestedManyWithoutRestaurantInput
   categories?: Prisma.MenuCategoryUncheckedCreateNestedManyWithoutRestaurantInput
+  carts?: Prisma.CartUncheckedCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantCreateOrConnectWithoutMenuItemsInput = {
@@ -1299,6 +1339,7 @@ export type RestaurantUpdateWithoutMenuItemsInput = {
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnedRestaurantsNestedInput
   staff?: Prisma.RestaurantStaffUpdateManyWithoutRestaurantNestedInput
   categories?: Prisma.MenuCategoryUpdateManyWithoutRestaurantNestedInput
+  carts?: Prisma.CartUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantUncheckedUpdateWithoutMenuItemsInput = {
@@ -1324,6 +1365,127 @@ export type RestaurantUncheckedUpdateWithoutMenuItemsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   staff?: Prisma.RestaurantStaffUncheckedUpdateManyWithoutRestaurantNestedInput
   categories?: Prisma.MenuCategoryUncheckedUpdateManyWithoutRestaurantNestedInput
+  carts?: Prisma.CartUncheckedUpdateManyWithoutRestaurantNestedInput
+}
+
+export type RestaurantCreateWithoutCartsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logoUrl?: string | null
+  bannerUrl?: string | null
+  cuisineTypes?: Prisma.RestaurantCreatecuisineTypesInput | string[]
+  status?: $Enums.RestaurantStatus
+  isOpen?: boolean
+  minOrderAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  deliveryFee?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  estimatedDeliveryTimeMinutes?: number
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  ratingCount?: number
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rejectionReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutOwnedRestaurantsInput
+  staff?: Prisma.RestaurantStaffCreateNestedManyWithoutRestaurantInput
+  categories?: Prisma.MenuCategoryCreateNestedManyWithoutRestaurantInput
+  menuItems?: Prisma.MenuItemCreateNestedManyWithoutRestaurantInput
+}
+
+export type RestaurantUncheckedCreateWithoutCartsInput = {
+  id?: string
+  ownerId: string
+  name: string
+  slug: string
+  description?: string | null
+  logoUrl?: string | null
+  bannerUrl?: string | null
+  cuisineTypes?: Prisma.RestaurantCreatecuisineTypesInput | string[]
+  status?: $Enums.RestaurantStatus
+  isOpen?: boolean
+  minOrderAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  deliveryFee?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  estimatedDeliveryTimeMinutes?: number
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  ratingCount?: number
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rejectionReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  staff?: Prisma.RestaurantStaffUncheckedCreateNestedManyWithoutRestaurantInput
+  categories?: Prisma.MenuCategoryUncheckedCreateNestedManyWithoutRestaurantInput
+  menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutRestaurantInput
+}
+
+export type RestaurantCreateOrConnectWithoutCartsInput = {
+  where: Prisma.RestaurantWhereUniqueInput
+  create: Prisma.XOR<Prisma.RestaurantCreateWithoutCartsInput, Prisma.RestaurantUncheckedCreateWithoutCartsInput>
+}
+
+export type RestaurantUpsertWithoutCartsInput = {
+  update: Prisma.XOR<Prisma.RestaurantUpdateWithoutCartsInput, Prisma.RestaurantUncheckedUpdateWithoutCartsInput>
+  create: Prisma.XOR<Prisma.RestaurantCreateWithoutCartsInput, Prisma.RestaurantUncheckedCreateWithoutCartsInput>
+  where?: Prisma.RestaurantWhereInput
+}
+
+export type RestaurantUpdateToOneWithWhereWithoutCartsInput = {
+  where?: Prisma.RestaurantWhereInput
+  data: Prisma.XOR<Prisma.RestaurantUpdateWithoutCartsInput, Prisma.RestaurantUncheckedUpdateWithoutCartsInput>
+}
+
+export type RestaurantUpdateWithoutCartsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bannerUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuisineTypes?: Prisma.RestaurantUpdatecuisineTypesInput | string[]
+  status?: Prisma.EnumRestaurantStatusFieldUpdateOperationsInput | $Enums.RestaurantStatus
+  isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  minOrderAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  deliveryFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  estimatedDeliveryTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutOwnedRestaurantsNestedInput
+  staff?: Prisma.RestaurantStaffUpdateManyWithoutRestaurantNestedInput
+  categories?: Prisma.MenuCategoryUpdateManyWithoutRestaurantNestedInput
+  menuItems?: Prisma.MenuItemUpdateManyWithoutRestaurantNestedInput
+}
+
+export type RestaurantUncheckedUpdateWithoutCartsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bannerUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuisineTypes?: Prisma.RestaurantUpdatecuisineTypesInput | string[]
+  status?: Prisma.EnumRestaurantStatusFieldUpdateOperationsInput | $Enums.RestaurantStatus
+  isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  minOrderAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  deliveryFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  estimatedDeliveryTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  staff?: Prisma.RestaurantStaffUncheckedUpdateManyWithoutRestaurantNestedInput
+  categories?: Prisma.MenuCategoryUncheckedUpdateManyWithoutRestaurantNestedInput
+  menuItems?: Prisma.MenuItemUncheckedUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantCreateManyOwnerInput = {
@@ -1371,6 +1533,7 @@ export type RestaurantUpdateWithoutOwnerInput = {
   staff?: Prisma.RestaurantStaffUpdateManyWithoutRestaurantNestedInput
   categories?: Prisma.MenuCategoryUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUpdateManyWithoutRestaurantNestedInput
+  carts?: Prisma.CartUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantUncheckedUpdateWithoutOwnerInput = {
@@ -1396,6 +1559,7 @@ export type RestaurantUncheckedUpdateWithoutOwnerInput = {
   staff?: Prisma.RestaurantStaffUncheckedUpdateManyWithoutRestaurantNestedInput
   categories?: Prisma.MenuCategoryUncheckedUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUncheckedUpdateManyWithoutRestaurantNestedInput
+  carts?: Prisma.CartUncheckedUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantUncheckedUpdateManyWithoutOwnerInput = {
@@ -1429,12 +1593,14 @@ export type RestaurantCountOutputType = {
   staff: number
   categories: number
   menuItems: number
+  carts: number
 }
 
 export type RestaurantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   staff?: boolean | RestaurantCountOutputTypeCountStaffArgs
   categories?: boolean | RestaurantCountOutputTypeCountCategoriesArgs
   menuItems?: boolean | RestaurantCountOutputTypeCountMenuItemsArgs
+  carts?: boolean | RestaurantCountOutputTypeCountCartsArgs
 }
 
 /**
@@ -1468,6 +1634,13 @@ export type RestaurantCountOutputTypeCountMenuItemsArgs<ExtArgs extends runtime.
   where?: Prisma.MenuItemWhereInput
 }
 
+/**
+ * RestaurantCountOutputType without action
+ */
+export type RestaurantCountOutputTypeCountCartsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CartWhereInput
+}
+
 
 export type RestaurantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1494,6 +1667,7 @@ export type RestaurantSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   staff?: boolean | Prisma.Restaurant$staffArgs<ExtArgs>
   categories?: boolean | Prisma.Restaurant$categoriesArgs<ExtArgs>
   menuItems?: boolean | Prisma.Restaurant$menuItemsArgs<ExtArgs>
+  carts?: boolean | Prisma.Restaurant$cartsArgs<ExtArgs>
   _count?: boolean | Prisma.RestaurantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["restaurant"]>
 
@@ -1574,6 +1748,7 @@ export type RestaurantInclude<ExtArgs extends runtime.Types.Extensions.InternalA
   staff?: boolean | Prisma.Restaurant$staffArgs<ExtArgs>
   categories?: boolean | Prisma.Restaurant$categoriesArgs<ExtArgs>
   menuItems?: boolean | Prisma.Restaurant$menuItemsArgs<ExtArgs>
+  carts?: boolean | Prisma.Restaurant$cartsArgs<ExtArgs>
   _count?: boolean | Prisma.RestaurantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type RestaurantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1590,6 +1765,7 @@ export type $RestaurantPayload<ExtArgs extends runtime.Types.Extensions.Internal
     staff: Prisma.$RestaurantStaffPayload<ExtArgs>[]
     categories: Prisma.$MenuCategoryPayload<ExtArgs>[]
     menuItems: Prisma.$MenuItemPayload<ExtArgs>[]
+    carts: Prisma.$CartPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2010,6 +2186,7 @@ export interface Prisma__RestaurantClient<T, Null = never, ExtArgs extends runti
   staff<T extends Prisma.Restaurant$staffArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Restaurant$staffArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RestaurantStaffPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   categories<T extends Prisma.Restaurant$categoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Restaurant$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MenuCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   menuItems<T extends Prisma.Restaurant$menuItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Restaurant$menuItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MenuItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  carts<T extends Prisma.Restaurant$cartsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Restaurant$cartsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2529,6 +2706,30 @@ export type Restaurant$menuItemsArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.MenuItemScalarFieldEnum | Prisma.MenuItemScalarFieldEnum[]
+}
+
+/**
+ * Restaurant.carts
+ */
+export type Restaurant$cartsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Cart
+   */
+  select?: Prisma.CartSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Cart
+   */
+  omit?: Prisma.CartOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CartInclude<ExtArgs> | null
+  where?: Prisma.CartWhereInput
+  orderBy?: Prisma.CartOrderByWithRelationInput | Prisma.CartOrderByWithRelationInput[]
+  cursor?: Prisma.CartWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CartScalarFieldEnum | Prisma.CartScalarFieldEnum[]
 }
 
 /**

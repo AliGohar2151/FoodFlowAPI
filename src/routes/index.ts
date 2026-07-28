@@ -7,6 +7,7 @@ import restaurantRoutes from "../modules/restaurants/restaurants.routes.js";
 import menuRoutes from "../modules/menus/menus.routes.js";
 import addressRoutes from "../modules/addresses/addresses.routes.js";
 import discoveryRoutes from "../modules/discovery/discovery.routes.js";
+import cartRoutes from "../modules/carts/carts.routes.js";
 
 const router: IRouter = Router();
 
@@ -40,8 +41,10 @@ router.use("/addresses", addressRoutes);
 // Discovery module
 router.use("/discovery", discoveryRoutes);
 
+// Cart module
+router.use("/carts", cartRoutes);
+
 // ── Future modules (added per phase) ────────────────────────────────────────
-// router.use("/carts", cartRoutes);
 // router.use("/orders", orderRoutes);
 // router.use("/payments", paymentRoutes);
 // router.use("/deliveries", deliveryRoutes);
