@@ -6,6 +6,7 @@ import userRoutes from "../modules/users/users.routes.js";
 import restaurantRoutes from "../modules/restaurants/restaurants.routes.js";
 import menuRoutes from "../modules/menus/menus.routes.js";
 import addressRoutes from "../modules/addresses/addresses.routes.js";
+import discoveryRoutes from "../modules/discovery/discovery.routes.js";
 
 const router: IRouter = Router();
 
@@ -36,8 +37,10 @@ router.use("/menus", menuRoutes);
 // Addresses module
 router.use("/addresses", addressRoutes);
 
+// Discovery module
+router.use("/discovery", discoveryRoutes);
+
 // ── Future modules (added per phase) ────────────────────────────────────────
-// router.use("/restaurants", discoveryRoutes);
 // router.use("/carts", cartRoutes);
 // router.use("/orders", orderRoutes);
 // router.use("/payments", paymentRoutes);

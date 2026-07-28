@@ -32,6 +32,8 @@ export type RestaurantAvgAggregateOutputType = {
   estimatedDeliveryTimeMinutes: number | null
   rating: runtime.Decimal | null
   ratingCount: number | null
+  latitude: runtime.Decimal | null
+  longitude: runtime.Decimal | null
 }
 
 export type RestaurantSumAggregateOutputType = {
@@ -40,6 +42,8 @@ export type RestaurantSumAggregateOutputType = {
   estimatedDeliveryTimeMinutes: number | null
   rating: runtime.Decimal | null
   ratingCount: number | null
+  latitude: runtime.Decimal | null
+  longitude: runtime.Decimal | null
 }
 
 export type RestaurantMinAggregateOutputType = {
@@ -57,6 +61,8 @@ export type RestaurantMinAggregateOutputType = {
   estimatedDeliveryTimeMinutes: number | null
   rating: runtime.Decimal | null
   ratingCount: number | null
+  latitude: runtime.Decimal | null
+  longitude: runtime.Decimal | null
   rejectionReason: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -77,6 +83,8 @@ export type RestaurantMaxAggregateOutputType = {
   estimatedDeliveryTimeMinutes: number | null
   rating: runtime.Decimal | null
   ratingCount: number | null
+  latitude: runtime.Decimal | null
+  longitude: runtime.Decimal | null
   rejectionReason: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -98,6 +106,8 @@ export type RestaurantCountAggregateOutputType = {
   estimatedDeliveryTimeMinutes: number
   rating: number
   ratingCount: number
+  latitude: number
+  longitude: number
   rejectionReason: number
   createdAt: number
   updatedAt: number
@@ -111,6 +121,8 @@ export type RestaurantAvgAggregateInputType = {
   estimatedDeliveryTimeMinutes?: true
   rating?: true
   ratingCount?: true
+  latitude?: true
+  longitude?: true
 }
 
 export type RestaurantSumAggregateInputType = {
@@ -119,6 +131,8 @@ export type RestaurantSumAggregateInputType = {
   estimatedDeliveryTimeMinutes?: true
   rating?: true
   ratingCount?: true
+  latitude?: true
+  longitude?: true
 }
 
 export type RestaurantMinAggregateInputType = {
@@ -136,6 +150,8 @@ export type RestaurantMinAggregateInputType = {
   estimatedDeliveryTimeMinutes?: true
   rating?: true
   ratingCount?: true
+  latitude?: true
+  longitude?: true
   rejectionReason?: true
   createdAt?: true
   updatedAt?: true
@@ -156,6 +172,8 @@ export type RestaurantMaxAggregateInputType = {
   estimatedDeliveryTimeMinutes?: true
   rating?: true
   ratingCount?: true
+  latitude?: true
+  longitude?: true
   rejectionReason?: true
   createdAt?: true
   updatedAt?: true
@@ -177,6 +195,8 @@ export type RestaurantCountAggregateInputType = {
   estimatedDeliveryTimeMinutes?: true
   rating?: true
   ratingCount?: true
+  latitude?: true
+  longitude?: true
   rejectionReason?: true
   createdAt?: true
   updatedAt?: true
@@ -285,6 +305,8 @@ export type RestaurantGroupByOutputType = {
   estimatedDeliveryTimeMinutes: number
   rating: runtime.Decimal
   ratingCount: number
+  latitude: runtime.Decimal | null
+  longitude: runtime.Decimal | null
   rejectionReason: string | null
   createdAt: Date
   updatedAt: Date
@@ -329,6 +351,8 @@ export type RestaurantWhereInput = {
   estimatedDeliveryTimeMinutes?: Prisma.IntFilter<"Restaurant"> | number
   rating?: Prisma.DecimalFilter<"Restaurant"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: Prisma.IntFilter<"Restaurant"> | number
+  latitude?: Prisma.DecimalNullableFilter<"Restaurant"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.DecimalNullableFilter<"Restaurant"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: Prisma.StringNullableFilter<"Restaurant"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Restaurant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Restaurant"> | Date | string
@@ -354,6 +378,8 @@ export type RestaurantOrderByWithRelationInput = {
   estimatedDeliveryTimeMinutes?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   ratingCount?: Prisma.SortOrder
+  latitude?: Prisma.SortOrderInput | Prisma.SortOrder
+  longitude?: Prisma.SortOrderInput | Prisma.SortOrder
   rejectionReason?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -382,6 +408,8 @@ export type RestaurantWhereUniqueInput = Prisma.AtLeast<{
   estimatedDeliveryTimeMinutes?: Prisma.IntFilter<"Restaurant"> | number
   rating?: Prisma.DecimalFilter<"Restaurant"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: Prisma.IntFilter<"Restaurant"> | number
+  latitude?: Prisma.DecimalNullableFilter<"Restaurant"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.DecimalNullableFilter<"Restaurant"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: Prisma.StringNullableFilter<"Restaurant"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Restaurant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Restaurant"> | Date | string
@@ -407,6 +435,8 @@ export type RestaurantOrderByWithAggregationInput = {
   estimatedDeliveryTimeMinutes?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   ratingCount?: Prisma.SortOrder
+  latitude?: Prisma.SortOrderInput | Prisma.SortOrder
+  longitude?: Prisma.SortOrderInput | Prisma.SortOrder
   rejectionReason?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -436,6 +466,8 @@ export type RestaurantScalarWhereWithAggregatesInput = {
   estimatedDeliveryTimeMinutes?: Prisma.IntWithAggregatesFilter<"Restaurant"> | number
   rating?: Prisma.DecimalWithAggregatesFilter<"Restaurant"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: Prisma.IntWithAggregatesFilter<"Restaurant"> | number
+  latitude?: Prisma.DecimalNullableWithAggregatesFilter<"Restaurant"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.DecimalNullableWithAggregatesFilter<"Restaurant"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: Prisma.StringNullableWithAggregatesFilter<"Restaurant"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Restaurant"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Restaurant"> | Date | string
@@ -456,6 +488,8 @@ export type RestaurantCreateInput = {
   estimatedDeliveryTimeMinutes?: number
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: number
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -481,6 +515,8 @@ export type RestaurantUncheckedCreateInput = {
   estimatedDeliveryTimeMinutes?: number
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: number
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -504,6 +540,8 @@ export type RestaurantUpdateInput = {
   estimatedDeliveryTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -529,6 +567,8 @@ export type RestaurantUncheckedUpdateInput = {
   estimatedDeliveryTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -553,6 +593,8 @@ export type RestaurantCreateManyInput = {
   estimatedDeliveryTimeMinutes?: number
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: number
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -573,6 +615,8 @@ export type RestaurantUpdateManyMutationInput = {
   estimatedDeliveryTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -594,6 +638,8 @@ export type RestaurantUncheckedUpdateManyInput = {
   estimatedDeliveryTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -633,6 +679,8 @@ export type RestaurantCountOrderByAggregateInput = {
   estimatedDeliveryTimeMinutes?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   ratingCount?: Prisma.SortOrder
+  latitude?: Prisma.SortOrder
+  longitude?: Prisma.SortOrder
   rejectionReason?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -644,6 +692,8 @@ export type RestaurantAvgOrderByAggregateInput = {
   estimatedDeliveryTimeMinutes?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   ratingCount?: Prisma.SortOrder
+  latitude?: Prisma.SortOrder
+  longitude?: Prisma.SortOrder
 }
 
 export type RestaurantMaxOrderByAggregateInput = {
@@ -661,6 +711,8 @@ export type RestaurantMaxOrderByAggregateInput = {
   estimatedDeliveryTimeMinutes?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   ratingCount?: Prisma.SortOrder
+  latitude?: Prisma.SortOrder
+  longitude?: Prisma.SortOrder
   rejectionReason?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -681,6 +733,8 @@ export type RestaurantMinOrderByAggregateInput = {
   estimatedDeliveryTimeMinutes?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   ratingCount?: Prisma.SortOrder
+  latitude?: Prisma.SortOrder
+  longitude?: Prisma.SortOrder
   rejectionReason?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -692,6 +746,8 @@ export type RestaurantSumOrderByAggregateInput = {
   estimatedDeliveryTimeMinutes?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   ratingCount?: Prisma.SortOrder
+  latitude?: Prisma.SortOrder
+  longitude?: Prisma.SortOrder
 }
 
 export type RestaurantScalarRelationFilter = {
@@ -770,6 +826,14 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type NullableDecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
 export type RestaurantCreateNestedOneWithoutStaffInput = {
   create?: Prisma.XOR<Prisma.RestaurantCreateWithoutStaffInput, Prisma.RestaurantUncheckedCreateWithoutStaffInput>
   connectOrCreate?: Prisma.RestaurantCreateOrConnectWithoutStaffInput
@@ -827,6 +891,8 @@ export type RestaurantCreateWithoutOwnerInput = {
   estimatedDeliveryTimeMinutes?: number
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: number
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -850,6 +916,8 @@ export type RestaurantUncheckedCreateWithoutOwnerInput = {
   estimatedDeliveryTimeMinutes?: number
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: number
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -903,6 +971,8 @@ export type RestaurantScalarWhereInput = {
   estimatedDeliveryTimeMinutes?: Prisma.IntFilter<"Restaurant"> | number
   rating?: Prisma.DecimalFilter<"Restaurant"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: Prisma.IntFilter<"Restaurant"> | number
+  latitude?: Prisma.DecimalNullableFilter<"Restaurant"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.DecimalNullableFilter<"Restaurant"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: Prisma.StringNullableFilter<"Restaurant"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Restaurant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Restaurant"> | Date | string
@@ -923,6 +993,8 @@ export type RestaurantCreateWithoutStaffInput = {
   estimatedDeliveryTimeMinutes?: number
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: number
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -947,6 +1019,8 @@ export type RestaurantUncheckedCreateWithoutStaffInput = {
   estimatedDeliveryTimeMinutes?: number
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: number
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -985,6 +1059,8 @@ export type RestaurantUpdateWithoutStaffInput = {
   estimatedDeliveryTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1009,6 +1085,8 @@ export type RestaurantUncheckedUpdateWithoutStaffInput = {
   estimatedDeliveryTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1031,6 +1109,8 @@ export type RestaurantCreateWithoutCategoriesInput = {
   estimatedDeliveryTimeMinutes?: number
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: number
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1055,6 +1135,8 @@ export type RestaurantUncheckedCreateWithoutCategoriesInput = {
   estimatedDeliveryTimeMinutes?: number
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: number
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1093,6 +1175,8 @@ export type RestaurantUpdateWithoutCategoriesInput = {
   estimatedDeliveryTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1117,6 +1201,8 @@ export type RestaurantUncheckedUpdateWithoutCategoriesInput = {
   estimatedDeliveryTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1139,6 +1225,8 @@ export type RestaurantCreateWithoutMenuItemsInput = {
   estimatedDeliveryTimeMinutes?: number
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: number
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1163,6 +1251,8 @@ export type RestaurantUncheckedCreateWithoutMenuItemsInput = {
   estimatedDeliveryTimeMinutes?: number
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: number
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1201,6 +1291,8 @@ export type RestaurantUpdateWithoutMenuItemsInput = {
   estimatedDeliveryTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1225,6 +1317,8 @@ export type RestaurantUncheckedUpdateWithoutMenuItemsInput = {
   estimatedDeliveryTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1247,6 +1341,8 @@ export type RestaurantCreateManyOwnerInput = {
   estimatedDeliveryTimeMinutes?: number
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: number
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1267,6 +1363,8 @@ export type RestaurantUpdateWithoutOwnerInput = {
   estimatedDeliveryTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1290,6 +1388,8 @@ export type RestaurantUncheckedUpdateWithoutOwnerInput = {
   estimatedDeliveryTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1313,6 +1413,8 @@ export type RestaurantUncheckedUpdateManyWithoutOwnerInput = {
   estimatedDeliveryTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1383,6 +1485,8 @@ export type RestaurantSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   estimatedDeliveryTimeMinutes?: boolean
   rating?: boolean
   ratingCount?: boolean
+  latitude?: boolean
+  longitude?: boolean
   rejectionReason?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1409,6 +1513,8 @@ export type RestaurantSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   estimatedDeliveryTimeMinutes?: boolean
   rating?: boolean
   ratingCount?: boolean
+  latitude?: boolean
+  longitude?: boolean
   rejectionReason?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1431,6 +1537,8 @@ export type RestaurantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   estimatedDeliveryTimeMinutes?: boolean
   rating?: boolean
   ratingCount?: boolean
+  latitude?: boolean
+  longitude?: boolean
   rejectionReason?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1453,12 +1561,14 @@ export type RestaurantSelectScalar = {
   estimatedDeliveryTimeMinutes?: boolean
   rating?: boolean
   ratingCount?: boolean
+  latitude?: boolean
+  longitude?: boolean
   rejectionReason?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type RestaurantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ownerId" | "name" | "slug" | "description" | "logoUrl" | "bannerUrl" | "cuisineTypes" | "status" | "isOpen" | "minOrderAmount" | "deliveryFee" | "estimatedDeliveryTimeMinutes" | "rating" | "ratingCount" | "rejectionReason" | "createdAt" | "updatedAt", ExtArgs["result"]["restaurant"]>
+export type RestaurantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ownerId" | "name" | "slug" | "description" | "logoUrl" | "bannerUrl" | "cuisineTypes" | "status" | "isOpen" | "minOrderAmount" | "deliveryFee" | "estimatedDeliveryTimeMinutes" | "rating" | "ratingCount" | "latitude" | "longitude" | "rejectionReason" | "createdAt" | "updatedAt", ExtArgs["result"]["restaurant"]>
 export type RestaurantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   staff?: boolean | Prisma.Restaurant$staffArgs<ExtArgs>
@@ -1497,6 +1607,8 @@ export type $RestaurantPayload<ExtArgs extends runtime.Types.Extensions.Internal
     estimatedDeliveryTimeMinutes: number
     rating: runtime.Decimal
     ratingCount: number
+    latitude: runtime.Decimal | null
+    longitude: runtime.Decimal | null
     rejectionReason: string | null
     createdAt: Date
     updatedAt: Date
@@ -1942,6 +2054,8 @@ export interface RestaurantFieldRefs {
   readonly estimatedDeliveryTimeMinutes: Prisma.FieldRef<"Restaurant", 'Int'>
   readonly rating: Prisma.FieldRef<"Restaurant", 'Decimal'>
   readonly ratingCount: Prisma.FieldRef<"Restaurant", 'Int'>
+  readonly latitude: Prisma.FieldRef<"Restaurant", 'Decimal'>
+  readonly longitude: Prisma.FieldRef<"Restaurant", 'Decimal'>
   readonly rejectionReason: Prisma.FieldRef<"Restaurant", 'String'>
   readonly createdAt: Prisma.FieldRef<"Restaurant", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Restaurant", 'DateTime'>

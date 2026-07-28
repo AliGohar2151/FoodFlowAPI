@@ -1376,6 +1376,8 @@ export const RestaurantScalarFieldEnum = {
   estimatedDeliveryTimeMinutes: 'estimatedDeliveryTimeMinutes',
   rating: 'rating',
   ratingCount: 'ratingCount',
+  latitude: 'latitude',
+  longitude: 'longitude',
   rejectionReason: 'rejectionReason',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
