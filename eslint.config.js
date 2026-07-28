@@ -1,0 +1,46 @@
+import eslint from "@eslint/js";
+import tseslint from "typescript-eslint";
+import prettierConfig from "eslint-config-prettier";
+
+export default tseslint.config(
+  eslint.configs.recommended,
+  ...tseslint.configs.strictTypeChecked,
+  ...tseslint.configs.stylisticTypeChecked,
+  prettierConfig,
+  {
+    languageOptions: {
+      parserOptions: {
+        project: true,
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+    rules: {
+      "@typescript-eslint/no-explicit-any": "error",
+      "@typescript-eslint/no-namespace": "off",
+      "@typescript-eslint/no-deprecated": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+      ],
+      "@typescript-eslint/consistent-type-imports": ["error", { prefer: "type-imports" }],
+      "@typescript-eslint/no-floating-promises": "error",
+      "@typescript-eslint/require-await": "off",
+      "@typescript-eslint/no-misused-promises": ["error", { checksVoidReturn: false }],
+      "no-console": "off",
+      "prefer-const": "error",
+      "no-var": "error",
+      eqeqeq: ["error", "always"],
+    },
+  },
+  {
+    ignores: [
+      "dist/**",
+      "node_modules/**",
+      "src/generated/**",
+      "prisma/**",
+      "tests/**",
+      "*.config.*",
+      "*.js",
+    ],
+  },
+);

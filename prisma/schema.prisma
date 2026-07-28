@@ -1,0 +1,178 @@
+// FoodFlow API — Prisma Schema
+// Phase 3: Identity & RBAC domain (users, roles, permissions, refresh tokens)
+// Future phases will add restaurants, menus, orders, payments, etc.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Enums ──────────────────────────────────────────────────────────────────
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+  PENDING_VERIFICATION
+}
+
+enum RestaurantStatus {
+  PENDING_APPROVAL
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+  REJECTED
+  CLOSED
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PREPARING
+  READY_FOR_PICKUP
+  ASSIGNED
+  PICKED_UP
+  OUT_FOR_DELIVERY
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  PAID
+  FAILED
+  REFUNDED
+  PARTIALLY_REFUNDED
+}
+
+enum DeliveryStatus {
+  PENDING
+  ASSIGNED
+  ACCEPTED
+  PICKED_UP
+  OUT_FOR_DELIVERY
+  DELIVERED
+  CANCELLED
+}
+
+enum ReviewStatus {
+  PUBLISHED
+  HIDDEN
+  FLAGGED
+  REMOVED
+}
+
+// ─── Identity Domain ─────────────────────────────────────────────────────────
+
+model User {
+  id                String       @id @default(cuid())
+  email             String       @unique
+  phone             String?      @unique
+  passwordHash      String
+  firstName         String
+  lastName          String
+  avatarUrl         String?
+  status            UserStatus   @default(PENDING_VERIFICATION)
+  emailVerifiedAt   DateTime?
+  phoneVerifiedAt   DateTime?
+  lastLoginAt       DateTime?
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+
+  // Relations
+  roles             UserRole[]
+  refreshTokens     RefreshToken[]
+
+  // Future relations (added in later phases)
+  // ownedRestaurants  Restaurant[]
+  // staffAssignments  RestaurantStaff[]
+  // addresses         Address[]
+  // cart              Cart?
+  // orders            Order[]
+  // reviews           Review[]
+
+  @@map("users")
+}
+
+model Role {
+  id           String           @id @default(cuid())
+  name         String           @unique
+  description  String?
+  isSystemRole Boolean          @default(false)
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  // Relations
+  users        UserRole[]
+  permissions  RolePermission[]
+
+  @@map("roles")
+}
+
+model Permission {
+  id          String           @id @default(cuid())
+  name        String           @unique  // e.g. "restaurants.update"
+  description String?
+  resource    String           // e.g. "restaurants"
+  action      String           // e.g. "update"
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  // Relations
+  roles       RolePermission[]
+
+  @@map("permissions")
+}
+
+model UserRole {
+  id        String   @id @default(cuid())
+  userId    String
+  roleId    String
+  createdAt DateTime @default(now())
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, roleId])
+  @@map("user_roles")
+}
+
+model RolePermission {
+  id           String   @id @default(cuid())
+  roleId       String
+  permissionId String
+  createdAt    DateTime @default(now())
+
+  // Relations
+  role       Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@unique([roleId, permissionId])
+  @@map("role_permissions")
+}
+
+model RefreshToken {
+  id               String    @id @default(cuid())
+  userId           String
+  tokenHash        String    @unique  // hashed token — never store raw
+  expiresAt        DateTime
+  revokedAt        DateTime?
+  replacedByTokenId String?  // chain tracking for token family revocation
+  userAgent        String?
+  ipAddress        String?
+  createdAt        DateTime  @default(now())
+  lastUsedAt       DateTime?
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([tokenHash])
+  @@map("refresh_tokens")
+}
