@@ -386,7 +386,7 @@ Phase 6  — RBAC                      COMPLETE
 Phase 7  — Authorization Policies    COMPLETE
 Phase 8  — Users                     COMPLETE
 Phase 9  — Restaurants               COMPLETE
-Phase 10 — Restaurant Staff          NOT STARTED
+Phase 10 — Restaurant Staff          COMPLETE
 Phase 11 — Menus                     NOT STARTED
 Phase 12 — Addresses                 NOT STARTED
 Phase 13 — Discovery                 NOT STARTED
@@ -417,13 +417,13 @@ Phase 33 — Final Documentation       NOT STARTED
 # 6. Current Development Phase
 
 ```text
-Current Phase: Phase 10 — Restaurant Staff Module
-Current Status: IN PROGRESS
+Current Phase: Phase 11 — Menus Module
+Current Status: NOT STARTED
 ```
 
-Phases 1 through 9 are complete. Restaurants Module (Schema definition, application creation, owner role upgrade, admin approval workflow, unique slug generation, search & discovery filtering, ownership policy protection) is fully implemented, verified, and test-covered.
+Phases 1 through 10 are complete. Restaurant Staff Module (`RestaurantStaff` model, `StaffRole` enum, staff assignment, role update, remove staff member, owner policy enforcement) is fully implemented, verified, and test-covered.
 
-Next implementation task: Phase 10 — Restaurant Staff Module (RestaurantStaff model, staff assignment, role permissions within restaurant scope).
+Next implementation task: Phase 11 — Menus Module (Category & MenuItem models, menu hierarchy, item customization options/addons, owner/staff policy checks).
 
 The first implementation milestone is:
 
