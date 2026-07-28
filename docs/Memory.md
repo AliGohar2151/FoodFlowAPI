@@ -387,7 +387,7 @@ Phase 7  — Authorization Policies    COMPLETE
 Phase 8  — Users                     COMPLETE
 Phase 9  — Restaurants               COMPLETE
 Phase 10 — Restaurant Staff          COMPLETE
-Phase 11 — Menus                     NOT STARTED
+Phase 11 — Menus                     COMPLETE
 Phase 12 — Addresses                 NOT STARTED
 Phase 13 — Discovery                 NOT STARTED
 Phase 14 — Cart                      NOT STARTED
@@ -417,13 +417,13 @@ Phase 33 — Final Documentation       NOT STARTED
 # 6. Current Development Phase
 
 ```text
-Current Phase: Phase 11 — Menus Module
-Current Status: IN PROGRESS
+Current Phase: Phase 12 — Delivery Addresses Module
+Current Status: NOT STARTED
 ```
 
-Phases 1 through 10 are complete. Restaurant Staff Module (`RestaurantStaff` model, `StaffRole` enum, staff assignment, role update, remove staff member, owner policy enforcement) is fully implemented, verified, and test-covered.
+Phases 1 through 11 are complete. Menus Module (`MenuCategory` and `MenuItem` models, category & menu item CRUD with restaurant scoping, dietary flags, pricing, display order, policy protection) is fully implemented, verified, and test-covered.
 
-Next implementation task: Phase 11 — Menus Module (Category & MenuItem models, menu hierarchy, item customization options/addons, owner/staff policy checks).
+Next implementation task: Phase 12 — Delivery Addresses Module (`Address` model, user address CRUD, default address management, latitude/longitude geolocation support).
 
 The first implementation milestone is:
 
