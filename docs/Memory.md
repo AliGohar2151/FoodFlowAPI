@@ -389,7 +389,7 @@ Phase 9  — Restaurants               COMPLETE
 Phase 10 — Restaurant Staff          COMPLETE
 Phase 11 — Menus                     COMPLETE
 Phase 12 — Addresses                 COMPLETE
-Phase 13 — Discovery                 NOT STARTED
+Phase 13 — Discovery                 COMPLETE
 Phase 14 — Cart                      NOT STARTED
 Phase 15 — Orders                    NOT STARTED
 Phase 16 — Order State Machine       NOT STARTED
@@ -417,13 +417,13 @@ Phase 33 — Final Documentation       NOT STARTED
 # 6. Current Development Phase
 
 ```text
-Current Phase: Phase 13 — Restaurant Discovery & Search Module
-Current Status: IN PROGRESS
+Current Phase: Phase 14 — Cart Module
+Current Status: NOT STARTED
 ```
 
-Phases 1 through 12 are complete. Delivery Addresses Module (`Address` model, user address CRUD, default address management with fallback, geolocation support, authentication protection) is fully implemented, verified, and test-covered.
+Phases 1 through 13 are complete. Restaurant Discovery & Search Module (Haversine GPS distance sorting, radius filtering, multi-filter keyword search across restaurants & menus, cuisine directory, featured listings) is fully implemented, verified, and test-covered.
 
-Next implementation task: Phase 13 — Restaurant Discovery & Search Module (Advanced restaurant search by location, distance calculation, cuisine filtering, rating filters, open status).
+Next implementation task: Phase 14 — Cart Module (`Cart` & `CartItem` models, single-restaurant cart enforcement, add/update/remove items, clear cart).
 
 The first implementation milestone is:
 
