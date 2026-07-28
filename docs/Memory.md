@@ -385,7 +385,7 @@ Phase 5  — Authentication            COMPLETE
 Phase 6  — RBAC                      COMPLETE
 Phase 7  — Authorization Policies    COMPLETE
 Phase 8  — Users                     COMPLETE
-Phase 9  — Restaurants               NOT STARTED
+Phase 9  — Restaurants               COMPLETE
 Phase 10 — Restaurant Staff          NOT STARTED
 Phase 11 — Menus                     NOT STARTED
 Phase 12 — Addresses                 NOT STARTED
@@ -417,13 +417,13 @@ Phase 33 — Final Documentation       NOT STARTED
 # 6. Current Development Phase
 
 ```text
-Current Phase: Phase 9 — Restaurants Module
+Current Phase: Phase 10 — Restaurant Staff Module
 Current Status: NOT STARTED
 ```
 
-Phases 1 through 8 are complete. Users Module (User profiles, update profile, search/paginate users for Admin, suspend/activate user, session revocation on status change) is fully implemented, verified, and test-covered.
+Phases 1 through 9 are complete. Restaurants Module (Schema definition, application creation, owner role upgrade, admin approval workflow, unique slug generation, search & discovery filtering, ownership policy protection) is fully implemented, verified, and test-covered.
 
-Next implementation task: Phase 9 — Restaurants Module (Restaurant model schema, creation application flow, owner management, admin approval workflow, update restaurant details).
+Next implementation task: Phase 10 — Restaurant Staff Module (RestaurantStaff model, staff assignment, role permissions within restaurant scope).
 
 The first implementation milestone is:
 
