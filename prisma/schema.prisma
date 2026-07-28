@@ -98,6 +98,7 @@ model User {
   staffAssignments  RestaurantStaff[]
   addresses         Address[]
   cart              Cart?
+  orders            Order[]
 
   // Future relations (added in later phases)
   // staffAssignments  RestaurantStaff[]
@@ -215,6 +216,7 @@ model Restaurant {
   categories MenuCategory[]
   menuItems  MenuItem[]
   carts      Cart[]
+  orders     Order[]
 
   @@index([ownerId])
   @@index([status])
@@ -280,6 +282,7 @@ model MenuItem {
   restaurant Restaurant   @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
   category   MenuCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   cartItems  CartItem[]
+  orderItems OrderItem[]
 
   @@index([restaurantId])
   @@index([categoryId])
@@ -341,8 +344,61 @@ model Address {
   updatedAt            DateTime @updatedAt
 
   // Relations
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orders Order[]
 
   @@index([userId])
   @@map("addresses")
+}
+
+model Order {
+  id                      String      @id @default(cuid())
+  orderNumber             String      @unique
+  userId                  String
+  restaurantId            String
+  addressId               String?
+  riderId                 String?
+  status                  OrderStatus @default(PENDING)
+  subtotal                Decimal     @db.Decimal(10, 2)
+  tax                     Decimal     @db.Decimal(10, 2)
+  deliveryFee             Decimal     @db.Decimal(10, 2)
+  discount                Decimal     @default(0) @db.Decimal(10, 2)
+  totalAmount             Decimal     @db.Decimal(10, 2)
+  deliveryAddressSnapshot Json
+  specialInstructions     String?
+  createdAt               DateTime    @default(now())
+  updatedAt               DateTime    @updatedAt
+
+  // Relations
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  restaurant Restaurant  @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  address    Address?    @relation(fields: [addressId], references: [id], onDelete: SetNull)
+  items      OrderItem[]
+
+  @@index([userId])
+  @@index([restaurantId])
+  @@index([riderId])
+  @@index([status])
+  @@map("orders")
+}
+
+model OrderItem {
+  id                  String   @id @default(cuid())
+  orderId             String
+  menuItemId          String
+  name                String
+  unitPrice           Decimal  @db.Decimal(10, 2)
+  quantity            Int
+  subtotal            Decimal  @db.Decimal(10, 2)
+  specialInstructions String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  // Relations
+  order    Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  menuItem MenuItem @relation(fields: [menuItemId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+  @@index([menuItemId])
+  @@map("order_items")
 }
