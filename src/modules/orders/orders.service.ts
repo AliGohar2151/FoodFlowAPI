@@ -3,7 +3,13 @@ import { NotFoundError, BadRequestError } from "../../common/errors/index.js";
 import { PolicyEngine } from "../../common/policies/policy-engine.js";
 import { orderPolicy } from "../../common/policies/order.policy.js";
 import type { UserContext } from "../../common/policies/policy.types.js";
-import type { CreateOrderInput, OrderQueryInput } from "./orders.schema.js";
+import type {
+  CreateOrderInput,
+  OrderQueryInput,
+  UpdateOrderStatusInput,
+} from "./orders.schema.js";
+import { OrderStatus } from "../../generated/prisma/client.js";
+import { OrderStateMachine } from "./order-state-machine.js";
 
 export class OrdersService {
   /**
@@ -114,6 +120,17 @@ export class OrdersService {
             },
           },
           items: true,
+        },
+      });
+
+      // Record initial status in audit history
+      await tx.orderStatusHistory.create({
+        data: {
+          orderId: newOrder.id,
+          fromStatus: null,
+          toStatus: OrderStatus.PENDING,
+          changedById: userId,
+          reason: "Order placed",
         },
       });
 
@@ -285,13 +302,23 @@ export class OrdersService {
   }
 
   /**
-   * Cancel an order if allowed by status and ABAC rules.
+   * Update order status using state machine validation and recording audit history.
    */
-  async cancelOrder(userContext: UserContext, orderId: string) {
+  async updateOrderStatus(
+    userContext: UserContext,
+    orderId: string,
+    input: UpdateOrderStatusInput,
+  ) {
     const order = await prisma.order.findUnique({
       where: { id: orderId },
       include: {
-        restaurant: true,
+        restaurant: {
+          include: {
+            staff: {
+              where: { userId: userContext.id },
+            },
+          },
+        },
       },
     });
 
@@ -299,34 +326,98 @@ export class OrdersService {
       throw new NotFoundError("Order");
     }
 
-    await PolicyEngine.enforce(userContext, orderPolicy, "cancel", {
+    const isStaffOrOwner =
+      order.restaurant.ownerId === userContext.id || order.restaurant.staff.length > 0;
+
+    // Validate state machine transition graph and role permissions
+    OrderStateMachine.validateTransition(order.status, input.status, userContext, {
       id: order.id,
-      customerId: order.userId,
+      userId: order.userId,
       restaurantId: order.restaurantId,
       restaurantOwnerId: order.restaurant.ownerId,
       riderId: order.riderId,
+      status: order.status,
+      isStaffOrOwner,
     });
 
-    if (order.status !== "PENDING" && order.status !== "CONFIRMED") {
-      throw new BadRequestError(`Order cannot be cancelled in status '${order.status}'`);
-    }
-
-    const updated = await prisma.order.update({
-      where: { id: orderId },
-      data: { status: "CANCELLED" },
-      include: {
-        restaurant: {
-          select: {
-            id: true,
-            name: true,
-            slug: true,
+    // Execute status update and create status history audit entry
+    const updated = await prisma.$transaction(async (tx) => {
+      const updatedOrder = await tx.order.update({
+        where: { id: orderId },
+        data: { status: input.status },
+        include: {
+          restaurant: {
+            select: {
+              id: true,
+              name: true,
+              slug: true,
+            },
           },
+          items: true,
         },
-        items: true,
-      },
+      });
+
+      await tx.orderStatusHistory.create({
+        data: {
+          orderId,
+          fromStatus: order.status,
+          toStatus: input.status,
+          changedById: userContext.id,
+          reason: input.reason ?? null,
+        },
+      });
+
+      return updatedOrder;
     });
 
     return this.formatOrder(updated);
+  }
+
+  /**
+   * Cancel an order using state machine transition logic.
+   */
+  async cancelOrder(userContext: UserContext, orderId: string, reason?: string) {
+    return this.updateOrderStatus(userContext, orderId, {
+      status: OrderStatus.CANCELLED,
+      reason: reason ?? "Order cancelled by user",
+    });
+  }
+
+  /**
+   * Get order status transition audit history.
+   */
+  async getOrderHistory(userContext: UserContext, orderId: string) {
+    // Verify user can read order
+    await this.getOrderById(userContext, orderId);
+
+    const history = await prisma.orderStatusHistory.findMany({
+      where: { orderId },
+      orderBy: { createdAt: "asc" },
+      include: {
+        changedBy: {
+          select: {
+            id: true,
+            firstName: true,
+            lastName: true,
+            email: true,
+          },
+        },
+      },
+    });
+
+    return history.map((entry) => ({
+      id: entry.id,
+      orderId: entry.orderId,
+      fromStatus: entry.fromStatus,
+      toStatus: entry.toStatus,
+      changedBy: {
+        id: entry.changedBy.id,
+        name: `${entry.changedBy.firstName} ${entry.changedBy.lastName}`,
+        email: entry.changedBy.email,
+      },
+      reason: entry.reason,
+      createdAt: entry.createdAt,
+    }));
   }
 
   // ── Helper Methods ─────────────────────────────────────────────────────────

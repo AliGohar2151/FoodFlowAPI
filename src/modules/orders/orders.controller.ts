@@ -2,7 +2,11 @@ import type { Request, Response } from "express";
 import { ordersService } from "./orders.service.js";
 import { sendSuccess } from "../../common/responses/index.js";
 import { UnauthorizedError } from "../../common/errors/index.js";
-import type { CreateOrderInput, OrderQueryInput } from "./orders.schema.js";
+import type {
+  CreateOrderInput,
+  OrderQueryInput,
+  UpdateOrderStatusInput,
+} from "./orders.schema.js";
 
 export class OrdersController {
   /**
@@ -59,6 +63,19 @@ export class OrdersController {
   }
 
   /**
+   * PATCH /api/v1/orders/:id/status
+   */
+  async updateOrderStatus(req: Request, res: Response): Promise<void> {
+    if (!req.user) {
+      throw new UnauthorizedError();
+    }
+    const { id } = req.params as { id: string };
+    const input = req.validatedBody as UpdateOrderStatusInput;
+    const order = await ordersService.updateOrderStatus(req.user, id, input);
+    sendSuccess(res, order, { message: "Order status updated successfully" });
+  }
+
+  /**
    * POST /api/v1/orders/:id/cancel
    */
   async cancelOrder(req: Request, res: Response): Promise<void> {
@@ -66,8 +83,21 @@ export class OrdersController {
       throw new UnauthorizedError();
     }
     const { id } = req.params as { id: string };
-    const order = await ordersService.cancelOrder(req.user, id);
+    const body = req.body as { reason?: string } | undefined;
+    const order = await ordersService.cancelOrder(req.user, id, body?.reason);
     sendSuccess(res, order, { message: "Order cancelled successfully" });
+  }
+
+  /**
+   * GET /api/v1/orders/:id/history
+   */
+  async getOrderHistory(req: Request, res: Response): Promise<void> {
+    if (!req.user) {
+      throw new UnauthorizedError();
+    }
+    const { id } = req.params as { id: string };
+    const history = await ordersService.getOrderHistory(req.user, id);
+    sendSuccess(res, history, { message: "Order status history retrieved" });
   }
 }
 

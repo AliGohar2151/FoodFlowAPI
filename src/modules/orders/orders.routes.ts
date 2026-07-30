@@ -1,6 +1,10 @@
 import { Router, type IRouter } from "express";
 import { ordersController } from "./orders.controller.js";
-import { createOrderSchema, orderQuerySchema } from "./orders.schema.js";
+import {
+  createOrderSchema,
+  orderQuerySchema,
+  updateOrderStatusSchema,
+} from "./orders.schema.js";
 import { authenticate, validate, asyncHandler } from "../../common/middleware/index.js";
 
 const router: IRouter = Router();
@@ -31,9 +35,20 @@ router.get(
   asyncHandler((req, res) => ordersController.getOrderById(req, res)),
 );
 
+router.patch(
+  "/:id/status",
+  validate({ body: updateOrderStatusSchema }),
+  asyncHandler((req, res) => ordersController.updateOrderStatus(req, res)),
+);
+
 router.post(
   "/:id/cancel",
   asyncHandler((req, res) => ordersController.cancelOrder(req, res)),
+);
+
+router.get(
+  "/:id/history",
+  asyncHandler((req, res) => ordersController.getOrderHistory(req, res)),
 );
 
 export default router;

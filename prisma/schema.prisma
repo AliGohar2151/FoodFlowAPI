@@ -99,6 +99,7 @@ model User {
   addresses         Address[]
   cart              Cart?
   orders            Order[]
+  statusHistoryEntries OrderStatusHistory[]
 
   // Future relations (added in later phases)
   // staffAssignments  RestaurantStaff[]
@@ -370,10 +371,11 @@ model Order {
   updatedAt               DateTime    @updatedAt
 
   // Relations
-  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  restaurant Restaurant  @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
-  address    Address?    @relation(fields: [addressId], references: [id], onDelete: SetNull)
-  items      OrderItem[]
+  user          User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  restaurant    Restaurant           @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  address       Address?             @relation(fields: [addressId], references: [id], onDelete: SetNull)
+  items         OrderItem[]
+  statusHistory OrderStatusHistory[]
 
   @@index([userId])
   @@index([restaurantId])
@@ -401,4 +403,22 @@ model OrderItem {
   @@index([orderId])
   @@index([menuItemId])
   @@map("order_items")
+}
+
+model OrderStatusHistory {
+  id          String       @id @default(cuid())
+  orderId     String
+  fromStatus  OrderStatus?
+  toStatus    OrderStatus
+  changedById String
+  reason      String?
+  createdAt   DateTime     @default(now())
+
+  // Relations
+  order     Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  changedBy User  @relation(fields: [changedById], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+  @@index([changedById])
+  @@map("order_status_history")
 }
