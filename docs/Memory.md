@@ -392,7 +392,7 @@ Phase 12 — Addresses                 COMPLETE
 Phase 13 — Discovery                 COMPLETE
 Phase 14 — Cart                      COMPLETE
 Phase 15 — Orders                    COMPLETE
-Phase 16 — Order State Machine       NOT STARTED
+Phase 16 — Order State Machine       COMPLETE
 Phase 17 — Payments                  NOT STARTED
 Phase 18 — Delivery                  NOT STARTED
 Phase 19 — Reviews                   NOT STARTED
@@ -417,13 +417,13 @@ Phase 33 — Final Documentation       NOT STARTED
 # 6. Current Development Phase
 
 ```text
-Current Phase: Phase 16 — Order State Machine Module
+Current Phase: Phase 17 — Payment System Module
 Current Status: NOT STARTED
 ```
 
-Phases 1 through 15 are complete. Order Placement & Management Module (`Order` & `OrderItem` models, atomic checkout order placement flow from cart, price/name snapshotting, address snapshotting, order history listing for users, owners & staff, order details, ABAC Policy enforcement, order cancellation policy) is fully implemented, verified, and test-covered.
+Phases 1 through 16 are complete. Order State Machine Module (`OrderStatusHistory` audit table, transition graph validation, role-based transition authorization, status transition endpoints `PATCH /api/v1/orders/:id/status` and `GET /api/v1/orders/:id/history`) is fully implemented, verified, and test-covered.
 
-Next implementation task: Phase 16 — Order State Machine Module (state transitions: `PENDING` → `CONFIRMED` → `PREPARING` → `READY_FOR_PICKUP` → `ASSIGNED` → `PICKED_UP` → `OUT_FOR_DELIVERY` → `DELIVERED`, role-based state transition permissions, transition history log).
+Next implementation task: Phase 17 — Payment System Module (`Payment` & `Refund` models, payment creation/verification, mock/Stripe gateway abstraction, webhook processing, idempotency).
 
 The first implementation milestone is:
 
