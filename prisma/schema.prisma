@@ -103,6 +103,7 @@ model User {
   payments          Payment[]
   riderProfile      RiderProfile?
   deliveries        Delivery[]
+  reviews           Review[]
 
   // Future relations (added in later phases)
   // staffAssignments  RestaurantStaff[]
@@ -221,6 +222,7 @@ model Restaurant {
   menuItems  MenuItem[]
   carts      Cart[]
   orders     Order[]
+  reviews    Review[]
 
   @@index([ownerId])
   @@index([status])
@@ -381,6 +383,7 @@ model Order {
   statusHistory OrderStatusHistory[]
   payment       Payment?
   delivery      Delivery?
+  review        Review?
 
   @@index([userId])
   @@index([restaurantId])
@@ -521,4 +524,25 @@ model Delivery {
   @@index([riderId])
   @@index([status])
   @@map("deliveries")
+}
+
+model Review {
+  id           String   @id @default(cuid())
+  orderId      String   @unique
+  userId       String
+  restaurantId String
+  rating       Int
+  comment      String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  order      Order      @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+  @@index([userId])
+  @@index([restaurantId])
+  @@map("reviews")
 }

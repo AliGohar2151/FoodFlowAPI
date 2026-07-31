@@ -117,3 +117,8 @@ export type RiderProfile = Prisma.RiderProfileModel
  * 
  */
 export type Delivery = Prisma.DeliveryModel
+/**
+ * Model Review
+ * 
+ */
+export type Review = Prisma.ReviewModel
