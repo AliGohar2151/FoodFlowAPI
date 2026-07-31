@@ -14,6 +14,7 @@ import deliveryRoutes from "../modules/deliveries/deliveries.routes.js";
 import reviewRoutes from "../modules/reviews/reviews.routes.js";
 import couponRoutes from "../modules/coupons/coupons.routes.js";
 import notificationRoutes from "../modules/notifications/notifications.routes.js";
+import jobRoutes from "../modules/jobs/jobs.routes.js";
 
 const router: IRouter = Router();
 
@@ -67,5 +68,8 @@ router.use("/coupons", couponRoutes);
 
 // Notifications module
 router.use("/notifications", notificationRoutes);
+
+// Background Jobs & Worker Queue module
+router.use("/jobs", jobRoutes);
 
 export default router;
