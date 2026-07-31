@@ -394,7 +394,7 @@ Phase 14 — Cart                      COMPLETE
 Phase 15 — Orders                    COMPLETE
 Phase 16 — Order State Machine       COMPLETE
 Phase 17 — Payments                  COMPLETE
-Phase 18 — Delivery                  NOT STARTED
+Phase 18 — Delivery                  COMPLETE
 Phase 19 — Reviews                   NOT STARTED
 Phase 20 — Coupons                   NOT STARTED
 Phase 21 — Notifications             NOT STARTED
@@ -417,13 +417,13 @@ Phase 33 — Final Documentation       NOT STARTED
 # 6. Current Development Phase
 
 ```text
-Current Phase: Phase 18 — Delivery System Module
+Current Phase: Phase 19 — Reviews and Ratings Module
 Current Status: NOT STARTED
 ```
 
-Phases 1 through 17 are complete. Payment System Module (`Payment` & `Refund` models, `PaymentGateway` provider abstraction, `MockStripeGateway`, payment intent creation `POST /api/v1/payments/initiate`, server-trusted signature-verified webhook handler `POST /api/v1/payments/webhook`, order payment status endpoint `GET /api/v1/payments/order/:orderId`, and owner/admin refund endpoint `POST /api/v1/payments/:paymentId/refund` with idempotency) is fully implemented, verified, and test-covered.
+Phases 1 through 18 are complete. Delivery System Module (`Delivery` & `RiderProfile` models, rider profile setup `PUT /api/v1/deliveries/rider-profile`, delivery assignment `POST /api/v1/deliveries/assign`, status lifecycle progression `PATCH /api/v1/deliveries/:id/status`, queue queries `GET /api/v1/deliveries/queue` & `GET /api/v1/deliveries/mine`, order delivery query `GET /api/v1/deliveries/order/:orderId`, and order state sync) is fully implemented, verified, and test-covered.
 
-Next implementation task: Phase 18 — Delivery System Module (`Delivery` model, rider management & availability, delivery assignment, pickup confirmation, delivery completion).
+Next implementation task: Phase 19 — Reviews and Ratings Module (`Review` model, review eligibility checks for completed orders, creation/update/deletion, and restaurant rating aggregation).
 
 The first implementation milestone is:
 
