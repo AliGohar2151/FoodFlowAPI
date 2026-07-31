@@ -397,7 +397,7 @@ Phase 17 — Payments                  COMPLETE
 Phase 18 — Delivery                  COMPLETE
 Phase 19 — Reviews                   COMPLETE
 Phase 20 — Coupons                   COMPLETE
-Phase 21 — Notifications             NOT STARTED
+Phase 21 — Notifications             COMPLETE
 Phase 22 — Background Jobs           NOT STARTED
 Phase 23 — Audit Logs                NOT STARTED
 Phase 24 — Caching                   NOT STARTED
@@ -417,13 +417,13 @@ Phase 33 — Final Documentation       NOT STARTED
 # 6. Current Development Phase
 
 ```text
-Current Phase: Phase 21 — Notifications Module
+Current Phase: Phase 22 — Background Jobs & Worker Queue Module
 Current Status: NOT STARTED
 ```
 
-Phases 1 through 20 are complete. Coupons and Promotions Module (`Coupon` & `CouponUsage` models, `DiscountType` enum PERCENTAGE vs FIXED_AMOUNT, minimum order value checks, maximum discount caps, global & per-user usage limits, start/end expiration dates, restaurant scoping, coupon validation & discount calculation `POST /api/v1/coupons/validate`, coupon creation `POST /api/v1/coupons`, update `PUT /api/v1/coupons/:id`, status toggle `PATCH /api/v1/coupons/:id/status`, and coupon listing `GET /api/v1/coupons`) is fully implemented, verified, and test-covered.
+Phases 1 through 21 are complete. Notifications Module (`Notification` model, `NotificationChannel` enum IN_APP, EMAIL, PUSH, SMS, `NotificationStatus` enum PENDING, SENT, FAILED, READ, non-blocking asynchronous dispatch `sendNotification`, mock multi-channel logger adapters, notification querying `GET /api/v1/notifications`, unread count endpoint `GET /api/v1/notifications/unread-count`, single mark-as-read `PATCH /api/v1/notifications/:id/read`, and mark-all-as-read `PATCH /api/v1/notifications/read-all`) is fully implemented, verified, and test-covered.
 
-Next implementation task: Phase 21 — Notifications Module (`Notification` model, in-app notification creation & delivery, mark as read endpoint, mock Email/SMS/Push channels).
+Next implementation task: Phase 22 — Background Jobs & Worker Queue Module (BullMQ / Redis background worker queue, email/SMS job processing, order expiration timers, failed job retry strategy).
 
 The first implementation milestone is:
 
