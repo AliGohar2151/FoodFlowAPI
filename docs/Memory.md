@@ -393,7 +393,7 @@ Phase 13 — Discovery                 COMPLETE
 Phase 14 — Cart                      COMPLETE
 Phase 15 — Orders                    COMPLETE
 Phase 16 — Order State Machine       COMPLETE
-Phase 17 — Payments                  NOT STARTED
+Phase 17 — Payments                  COMPLETE
 Phase 18 — Delivery                  NOT STARTED
 Phase 19 — Reviews                   NOT STARTED
 Phase 20 — Coupons                   NOT STARTED
@@ -417,13 +417,13 @@ Phase 33 — Final Documentation       NOT STARTED
 # 6. Current Development Phase
 
 ```text
-Current Phase: Phase 17 — Payment System Module
+Current Phase: Phase 18 — Delivery System Module
 Current Status: NOT STARTED
 ```
 
-Phases 1 through 16 are complete. Order State Machine Module (`OrderStatusHistory` audit table, transition graph validation, role-based transition authorization, status transition endpoints `PATCH /api/v1/orders/:id/status` and `GET /api/v1/orders/:id/history`) is fully implemented, verified, and test-covered.
+Phases 1 through 17 are complete. Payment System Module (`Payment` & `Refund` models, `PaymentGateway` provider abstraction, `MockStripeGateway`, payment intent creation `POST /api/v1/payments/initiate`, server-trusted signature-verified webhook handler `POST /api/v1/payments/webhook`, order payment status endpoint `GET /api/v1/payments/order/:orderId`, and owner/admin refund endpoint `POST /api/v1/payments/:paymentId/refund` with idempotency) is fully implemented, verified, and test-covered.
 
-Next implementation task: Phase 17 — Payment System Module (`Payment` & `Refund` models, payment creation/verification, mock/Stripe gateway abstraction, webhook processing, idempotency).
+Next implementation task: Phase 18 — Delivery System Module (`Delivery` model, rider management & availability, delivery assignment, pickup confirmation, delivery completion).
 
 The first implementation milestone is:
 
