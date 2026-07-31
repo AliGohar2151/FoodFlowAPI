@@ -400,7 +400,7 @@ Phase 20 — Coupons                   COMPLETE
 Phase 21 — Notifications             COMPLETE
 Phase 22 — Background Jobs           COMPLETE
 Phase 23 — Audit Logs                COMPLETE
-Phase 24 — Caching                   NOT STARTED
+Phase 24 — Caching                   COMPLETE
 Phase 25 — API Documentation         NOT STARTED
 Phase 26 — Testing                   NOT STARTED
 Phase 27 — Docker                    NOT STARTED
@@ -417,13 +417,13 @@ Phase 33 — Final Documentation       NOT STARTED
 # 6. Current Development Phase
 
 ```text
-Current Phase: Phase 24 — Selective Caching Module
+Current Phase: Phase 25 — API Documentation (OpenAPI / Swagger)
 Current Status: NOT STARTED
 ```
 
-Phases 1 through 23 are complete. Audit Logging Module (`AuditLog` model, non-blocking `auditLogsService.record` dispatch, pre/post change state capturing `oldValues` & `newValues`, IP address & User-Agent metadata, admin audit log listing `GET /api/v1/audit-logs`, and audit log details query `GET /api/v1/audit-logs/:id`) is fully implemented, verified, and test-covered.
+Phases 1 through 24 are complete. Selective Caching Module (`CacheManager` class abstraction with JSON serialization/deserialization, graceful offline fallback, wildcard pattern invalidation `delByPattern` via Redis SCAN, standardized key conventions `CacheKeys`, TTL policies `CacheTTL`, read-through caching on `getRestaurantById` and `listRestaurants`, automatic cache invalidation hooks on restaurant profile/status updates, and admin management endpoints `GET /api/v1/caching/health`, `POST /api/v1/caching/invalidate`, `POST /api/v1/caching/flush`) is fully implemented, verified, and test-covered.
 
-Next implementation task: Phase 24 — Selective Caching Module (Redis cache manager abstraction, TTL strategy, cache invalidation hooks for restaurant listings, details, and menus).
+Next implementation task: Phase 25 — API Documentation (OpenAPI 3.0 / Swagger specification generation, Swagger UI endpoint setup at `/docs`).
 
 The first implementation milestone is:
 
