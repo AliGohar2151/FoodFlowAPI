@@ -89,3 +89,23 @@ export const StaffRole = {
 } as const
 
 export type StaffRole = (typeof StaffRole)[keyof typeof StaffRole]
+
+
+export const PaymentMethod = {
+  CREDIT_CARD: 'CREDIT_CARD',
+  DEBIT_CARD: 'DEBIT_CARD',
+  UPI: 'UPI',
+  WALLET: 'WALLET',
+  CASH_ON_DELIVERY: 'CASH_ON_DELIVERY'
+} as const
+
+export type PaymentMethod = (typeof PaymentMethod)[keyof typeof PaymentMethod]
+
+
+export const RefundStatus = {
+  PENDING: 'PENDING',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED'
+} as const
+
+export type RefundStatus = (typeof RefundStatus)[keyof typeof RefundStatus]

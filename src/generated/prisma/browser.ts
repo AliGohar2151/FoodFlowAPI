@@ -97,3 +97,13 @@ export type OrderItem = Prisma.OrderItemModel
  * 
  */
 export type OrderStatusHistory = Prisma.OrderStatusHistoryModel
+/**
+ * Model Payment
+ * 
+ */
+export type Payment = Prisma.PaymentModel
+/**
+ * Model Refund
+ * 
+ */
+export type Refund = Prisma.RefundModel

@@ -100,6 +100,7 @@ model User {
   cart              Cart?
   orders            Order[]
   statusHistoryEntries OrderStatusHistory[]
+  payments          Payment[]
 
   // Future relations (added in later phases)
   // staffAssignments  RestaurantStaff[]
@@ -376,6 +377,7 @@ model Order {
   address       Address?             @relation(fields: [addressId], references: [id], onDelete: SetNull)
   items         OrderItem[]
   statusHistory OrderStatusHistory[]
+  payment       Payment?
 
   @@index([userId])
   @@index([restaurantId])
@@ -421,4 +423,64 @@ model OrderStatusHistory {
   @@index([orderId])
   @@index([changedById])
   @@map("order_status_history")
+}
+
+enum PaymentMethod {
+  CREDIT_CARD
+  DEBIT_CARD
+  UPI
+  WALLET
+  CASH_ON_DELIVERY
+}
+
+enum RefundStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+model Payment {
+  id              String        @id @default(cuid())
+  orderId         String        @unique
+  userId          String
+  amount          Decimal       @db.Decimal(10, 2)
+  currency        String        @default("USD")
+  status          PaymentStatus @default(PENDING)
+  method          PaymentMethod @default(CREDIT_CARD)
+  transactionId   String?       @unique
+  idempotencyKey  String?       @unique
+  gatewayProvider String        @default("MOCK_STRIPE")
+  paymentIntentId String?
+  clientSecret    String?
+  failureReason   String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  // Relations
+  order   Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  refunds Refund[]
+
+  @@index([orderId])
+  @@index([userId])
+  @@index([status])
+  @@map("payments")
+}
+
+model Refund {
+  id             String       @id @default(cuid())
+  paymentId      String
+  amount         Decimal      @db.Decimal(10, 2)
+  reason         String?
+  status         RefundStatus @default(PENDING)
+  refundId       String?      @unique
+  idempotencyKey String?      @unique
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  // Relations
+  payment Payment @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+
+  @@index([paymentId])
+  @@map("refunds")
 }

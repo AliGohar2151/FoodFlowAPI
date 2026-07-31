@@ -66,7 +66,9 @@ export const ModelName = {
   Address: 'Address',
   Order: 'Order',
   OrderItem: 'OrderItem',
-  OrderStatusHistory: 'OrderStatusHistory'
+  OrderStatusHistory: 'OrderStatusHistory',
+  Payment: 'Payment',
+  Refund: 'Refund'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -334,6 +336,42 @@ export const OrderStatusHistoryScalarFieldEnum = {
 } as const
 
 export type OrderStatusHistoryScalarFieldEnum = (typeof OrderStatusHistoryScalarFieldEnum)[keyof typeof OrderStatusHistoryScalarFieldEnum]
+
+
+export const PaymentScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  userId: 'userId',
+  amount: 'amount',
+  currency: 'currency',
+  status: 'status',
+  method: 'method',
+  transactionId: 'transactionId',
+  idempotencyKey: 'idempotencyKey',
+  gatewayProvider: 'gatewayProvider',
+  paymentIntentId: 'paymentIntentId',
+  clientSecret: 'clientSecret',
+  failureReason: 'failureReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
+
+
+export const RefundScalarFieldEnum = {
+  id: 'id',
+  paymentId: 'paymentId',
+  amount: 'amount',
+  reason: 'reason',
+  status: 'status',
+  refundId: 'refundId',
+  idempotencyKey: 'idempotencyKey',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RefundScalarFieldEnum = (typeof RefundScalarFieldEnum)[keyof typeof RefundScalarFieldEnum]
 
 
 export const SortOrder = {
