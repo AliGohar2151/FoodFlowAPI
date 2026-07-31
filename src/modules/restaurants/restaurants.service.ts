@@ -1,5 +1,6 @@
 import { prisma } from "../../infrastructure/database/index.js";
 import { NotFoundError, ConflictError } from "../../common/errors/index.js";
+import { cacheManager, CacheKeys, CacheTTL } from "../caching/index.js";
 import type {
   CreateRestaurantInput,
   UpdateRestaurantInput,
@@ -69,29 +70,35 @@ export class RestaurantsService {
   }
 
   /**
-   * Get restaurant details by ID.
+   * Get restaurant details by ID (Cached).
    */
   async getRestaurantById(id: string) {
-    const restaurant = await prisma.restaurant.findUnique({
-      where: { id },
-      include: {
-        owner: {
-          select: {
-            id: true,
-            email: true,
-            firstName: true,
-            lastName: true,
-            phone: true,
+    return cacheManager.getOrSet(
+      CacheKeys.restaurantDetail(id),
+      async () => {
+        const restaurant = await prisma.restaurant.findUnique({
+          where: { id },
+          include: {
+            owner: {
+              select: {
+                id: true,
+                email: true,
+                firstName: true,
+                lastName: true,
+                phone: true,
+              },
+            },
           },
-        },
+        });
+
+        if (!restaurant) {
+          throw new NotFoundError("Restaurant");
+        }
+
+        return restaurant;
       },
-    });
-
-    if (!restaurant) {
-      throw new NotFoundError("Restaurant");
-    }
-
-    return restaurant;
+      CacheTTL.RESTAURANT_DETAIL,
+    );
   }
 
   /**
@@ -120,69 +127,77 @@ export class RestaurantsService {
   }
 
   /**
-   * List and filter restaurants with pagination.
+   * List and filter restaurants with pagination (Cached).
    */
   async listRestaurants(query: QueryRestaurantsInput) {
-    const page = query.page;
-    const limit = query.limit;
-    const skip = (page - 1) * limit;
+    const cacheKey = CacheKeys.restaurantList(JSON.stringify(query));
 
-    const where: Record<string, unknown> = {};
+    return cacheManager.getOrSet(
+      cacheKey,
+      async () => {
+        const page = query.page;
+        const limit = query.limit;
+        const skip = (page - 1) * limit;
 
-    // Default to ACTIVE for public discovery if status not specified
-    where.status = query.status ?? "ACTIVE";
+        const where: Record<string, unknown> = {};
 
-    if (query.cuisine) {
-      where.cuisineTypes = {
-        has: query.cuisine,
-      };
-    }
+        // Default to ACTIVE for public discovery if status not specified
+        where.status = query.status ?? "ACTIVE";
 
-    if (query.search) {
-      where.OR = [
-        { name: { contains: query.search, mode: "insensitive" } },
-        { description: { contains: query.search, mode: "insensitive" } },
-      ];
-    }
+        if (query.cuisine) {
+          where.cuisineTypes = {
+            has: query.cuisine,
+          };
+        }
 
-    const [total, restaurants] = await Promise.all([
-      prisma.restaurant.count({ where }),
-      prisma.restaurant.findMany({
-        where,
-        skip,
-        take: limit,
-        orderBy: { rating: "desc" },
-        select: {
-          id: true,
-          name: true,
-          slug: true,
-          description: true,
-          logoUrl: true,
-          bannerUrl: true,
-          cuisineTypes: true,
-          status: true,
-          isOpen: true,
-          minOrderAmount: true,
-          deliveryFee: true,
-          estimatedDeliveryTimeMinutes: true,
-          rating: true,
-          ratingCount: true,
-          createdAt: true,
-        },
-      }),
-    ]);
+        if (query.search) {
+          where.OR = [
+            { name: { contains: query.search, mode: "insensitive" } },
+            { description: { contains: query.search, mode: "insensitive" } },
+          ];
+        }
 
-    const totalPages = Math.ceil(total / limit);
+        const [total, restaurants] = await Promise.all([
+          prisma.restaurant.count({ where }),
+          prisma.restaurant.findMany({
+            where,
+            skip,
+            take: limit,
+            orderBy: { rating: "desc" },
+            select: {
+              id: true,
+              name: true,
+              slug: true,
+              description: true,
+              logoUrl: true,
+              bannerUrl: true,
+              cuisineTypes: true,
+              status: true,
+              isOpen: true,
+              minOrderAmount: true,
+              deliveryFee: true,
+              estimatedDeliveryTimeMinutes: true,
+              rating: true,
+              ratingCount: true,
+              createdAt: true,
+            },
+          }),
+        ]);
 
-    return {
-      restaurants,
-      pagination: {
-        page,
-        limit,
-        total,
-        totalPages,
+        const totalPages = Math.ceil(total / limit);
+
+        return {
+          restaurants,
+          pagination: {
+            page,
+            limit,
+            total,
+            totalPages,
+          },
+        };
       },
-    };
+      CacheTTL.RESTAURANT_LIST,
+    );
   }
 
   /**
@@ -204,7 +219,7 @@ export class RestaurantsService {
       throw new NotFoundError("Restaurant");
     }
 
-    return prisma.restaurant.update({
+    const updated = await prisma.restaurant.update({
       where: { id },
       data: {
         name: input.name ?? restaurant.name,
@@ -219,6 +234,10 @@ export class RestaurantsService {
           input.estimatedDeliveryTimeMinutes ?? restaurant.estimatedDeliveryTimeMinutes,
       },
     });
+
+    // Invalidate restaurant cache
+    await cacheManager.delByPattern(CacheKeys.allRestaurantsPattern());
+    return updated;
   }
 
   /**
@@ -230,7 +249,7 @@ export class RestaurantsService {
       throw new NotFoundError("Restaurant");
     }
 
-    return prisma.restaurant.update({
+    const updated = await prisma.restaurant.update({
       where: { id },
       data: {
         status: input.status,
@@ -238,6 +257,10 @@ export class RestaurantsService {
           input.status === "REJECTED" ? (input.rejectionReason ?? null) : null,
       },
     });
+
+    // Invalidate restaurant cache
+    await cacheManager.delByPattern(CacheKeys.allRestaurantsPattern());
+    return updated;
   }
 }
 

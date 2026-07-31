@@ -16,6 +16,7 @@ import couponRoutes from "../modules/coupons/coupons.routes.js";
 import notificationRoutes from "../modules/notifications/notifications.routes.js";
 import jobRoutes from "../modules/jobs/jobs.routes.js";
 import auditLogRoutes from "../modules/audit-logs/audit-logs.routes.js";
+import cachingRoutes from "../modules/caching/caching.routes.js";
 
 const router: IRouter = Router();
 
@@ -75,5 +76,8 @@ router.use("/jobs", jobRoutes);
 
 // Audit Logging module
 router.use("/audit-logs", auditLogRoutes);
+
+// Selective Caching module
+router.use("/caching", cachingRoutes);
 
 export default router;
