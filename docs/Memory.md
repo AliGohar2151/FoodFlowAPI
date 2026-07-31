@@ -401,7 +401,7 @@ Phase 21 — Notifications             COMPLETE
 Phase 22 — Background Jobs           COMPLETE
 Phase 23 — Audit Logs                COMPLETE
 Phase 24 — Caching                   COMPLETE
-Phase 25 — API Documentation         NOT STARTED
+Phase 25 — API Documentation         COMPLETE
 Phase 26 — Testing                   NOT STARTED
 Phase 27 — Docker                    NOT STARTED
 Phase 28 — CI/CD                     NOT STARTED
@@ -417,13 +417,13 @@ Phase 33 — Final Documentation       NOT STARTED
 # 6. Current Development Phase
 
 ```text
-Current Phase: Phase 25 — API Documentation (OpenAPI / Swagger)
+Current Phase: Phase 26 — Testing Module
 Current Status: NOT STARTED
 ```
 
-Phases 1 through 24 are complete. Selective Caching Module (`CacheManager` class abstraction with JSON serialization/deserialization, graceful offline fallback, wildcard pattern invalidation `delByPattern` via Redis SCAN, standardized key conventions `CacheKeys`, TTL policies `CacheTTL`, read-through caching on `getRestaurantById` and `listRestaurants`, automatic cache invalidation hooks on restaurant profile/status updates, and admin management endpoints `GET /api/v1/caching/health`, `POST /api/v1/caching/invalidate`, `POST /api/v1/caching/flush`) is fully implemented, verified, and test-covered.
+Phases 1 through 25 are complete. API Documentation Module (OpenAPI 3.0.3 spec in `src/docs/swagger.json`, `swagger-ui-express` mounting at `/docs`, Bearer JWT authentication definitions, schemas for error/success responses, and interactive route testing) is fully implemented, verified, and test-covered.
 
-Next implementation task: Phase 25 — API Documentation (OpenAPI 3.0 / Swagger specification generation, Swagger UI endpoint setup at `/docs`).
+Next implementation task: Phase 26 — Testing Module (End-to-end integration workflows across cart-to-order-to-payment-to-delivery lifecycle, performance benchmarking, edge-case coverage).
 
 The first implementation milestone is:
 
