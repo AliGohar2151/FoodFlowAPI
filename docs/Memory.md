@@ -396,7 +396,7 @@ Phase 16 — Order State Machine       COMPLETE
 Phase 17 — Payments                  COMPLETE
 Phase 18 — Delivery                  COMPLETE
 Phase 19 — Reviews                   COMPLETE
-Phase 20 — Coupons                   NOT STARTED
+Phase 20 — Coupons                   COMPLETE
 Phase 21 — Notifications             NOT STARTED
 Phase 22 — Background Jobs           NOT STARTED
 Phase 23 — Audit Logs                NOT STARTED
@@ -417,13 +417,13 @@ Phase 33 — Final Documentation       NOT STARTED
 # 6. Current Development Phase
 
 ```text
-Current Phase: Phase 20 — Coupons and Promotions Module
+Current Phase: Phase 21 — Notifications Module
 Current Status: NOT STARTED
 ```
 
-Phases 1 through 19 are complete. Reviews and Ratings Module (`Review` model, review eligibility check for delivered orders `order.status === DELIVERED`, unique single-review enforcement per order, rating calculation 1 to 5 stars, review creation `POST /api/v1/reviews`, update `PUT /api/v1/reviews/:id`, deletion `DELETE /api/v1/reviews/:id`, restaurant reviews & rating aggregation query `GET /api/v1/reviews/restaurant/:restaurantId`, and customer review history `GET /api/v1/reviews/mine`) is fully implemented, verified, and test-covered.
+Phases 1 through 20 are complete. Coupons and Promotions Module (`Coupon` & `CouponUsage` models, `DiscountType` enum PERCENTAGE vs FIXED_AMOUNT, minimum order value checks, maximum discount caps, global & per-user usage limits, start/end expiration dates, restaurant scoping, coupon validation & discount calculation `POST /api/v1/coupons/validate`, coupon creation `POST /api/v1/coupons`, update `PUT /api/v1/coupons/:id`, status toggle `PATCH /api/v1/coupons/:id/status`, and coupon listing `GET /api/v1/coupons`) is fully implemented, verified, and test-covered.
 
-Next implementation task: Phase 20 — Coupons and Promotions Module (`Coupon` model, discount types PERCENTAGE vs FIXED_AMOUNT, validation rules, usage limits, apply coupon endpoint).
+Next implementation task: Phase 21 — Notifications Module (`Notification` model, in-app notification creation & delivery, mark as read endpoint, mock Email/SMS/Push channels).
 
 The first implementation milestone is:
 
