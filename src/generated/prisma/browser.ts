@@ -137,3 +137,8 @@ export type CouponUsage = Prisma.CouponUsageModel
  * 
  */
 export type Notification = Prisma.NotificationModel
+/**
+ * Model AuditLog
+ * 
+ */
+export type AuditLog = Prisma.AuditLogModel
