@@ -5,6 +5,7 @@ import { rateLimit } from "express-rate-limit";
 
 import { config } from "./config/index.js";
 import apiRouter from "./routes/index.js";
+import swaggerRouter from "./docs/swagger.js";
 import {
   requestIdMiddleware,
   notFoundHandler,
@@ -19,7 +20,11 @@ const app: Application = express();
 app.use(requestIdMiddleware);
 
 // Set secure HTTP headers
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: false, // Disabled for Swagger UI assets inline styling
+  }),
+);
 
 // CORS
 app.use(
@@ -51,10 +56,14 @@ app.use(
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
-// ── API Routes ───────────────────────────────────────────────────────────────
+// ── API Documentation & Routes ───────────────────────────────────────────────
 
 const apiPrefix = config.app.apiPrefix;
 
+// Interactive Swagger OpenAPI UI
+app.use("/docs", swaggerRouter);
+
+// API v1 routes
 app.use(apiPrefix, apiRouter);
 
 // ── Fallback Handlers ────────────────────────────────────────────────────────
