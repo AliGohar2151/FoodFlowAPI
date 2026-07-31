@@ -68,7 +68,9 @@ export const ModelName = {
   OrderItem: 'OrderItem',
   OrderStatusHistory: 'OrderStatusHistory',
   Payment: 'Payment',
-  Refund: 'Refund'
+  Refund: 'Refund',
+  RiderProfile: 'RiderProfile',
+  Delivery: 'Delivery'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -372,6 +374,34 @@ export const RefundScalarFieldEnum = {
 } as const
 
 export type RefundScalarFieldEnum = (typeof RefundScalarFieldEnum)[keyof typeof RefundScalarFieldEnum]
+
+
+export const RiderProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  isAvailable: 'isAvailable',
+  vehicleType: 'vehicleType',
+  licensePlate: 'licensePlate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RiderProfileScalarFieldEnum = (typeof RiderProfileScalarFieldEnum)[keyof typeof RiderProfileScalarFieldEnum]
+
+
+export const DeliveryScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  riderId: 'riderId',
+  status: 'status',
+  pickupTime: 'pickupTime',
+  deliveryTime: 'deliveryTime',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DeliveryScalarFieldEnum = (typeof DeliveryScalarFieldEnum)[keyof typeof DeliveryScalarFieldEnum]
 
 
 export const SortOrder = {

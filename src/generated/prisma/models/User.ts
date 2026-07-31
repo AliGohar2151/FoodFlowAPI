@@ -255,6 +255,8 @@ export type UserWhereInput = {
   orders?: Prisma.OrderListRelationFilter
   statusHistoryEntries?: Prisma.OrderStatusHistoryListRelationFilter
   payments?: Prisma.PaymentListRelationFilter
+  riderProfile?: Prisma.XOR<Prisma.RiderProfileNullableScalarRelationFilter, Prisma.RiderProfileWhereInput> | null
+  deliveries?: Prisma.DeliveryListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -280,6 +282,8 @@ export type UserOrderByWithRelationInput = {
   orders?: Prisma.OrderOrderByRelationAggregateInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryOrderByRelationAggregateInput
   payments?: Prisma.PaymentOrderByRelationAggregateInput
+  riderProfile?: Prisma.RiderProfileOrderByWithRelationInput
+  deliveries?: Prisma.DeliveryOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -308,6 +312,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   orders?: Prisma.OrderListRelationFilter
   statusHistoryEntries?: Prisma.OrderStatusHistoryListRelationFilter
   payments?: Prisma.PaymentListRelationFilter
+  riderProfile?: Prisma.XOR<Prisma.RiderProfileNullableScalarRelationFilter, Prisma.RiderProfileWhereInput> | null
+  deliveries?: Prisma.DeliveryListRelationFilter
 }, "id" | "email" | "phone">
 
 export type UserOrderByWithAggregationInput = {
@@ -371,6 +377,8 @@ export type UserCreateInput = {
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryCreateNestedManyWithoutChangedByInput
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -396,6 +404,8 @@ export type UserUncheckedCreateInput = {
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutChangedByInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
 }
 
 export type UserUpdateInput = {
@@ -421,6 +431,8 @@ export type UserUpdateInput = {
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUpdateManyWithoutChangedByNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -446,6 +458,8 @@ export type UserUncheckedUpdateInput = {
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -547,6 +561,11 @@ export type UserMinOrderByAggregateInput = {
 export type UserScalarRelationFilter = {
   is?: Prisma.UserWhereInput
   isNot?: Prisma.UserWhereInput
+}
+
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -695,6 +714,36 @@ export type UserUpdateOneRequiredWithoutPaymentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPaymentsInput, Prisma.UserUpdateWithoutPaymentsInput>, Prisma.UserUncheckedUpdateWithoutPaymentsInput>
 }
 
+export type UserCreateNestedOneWithoutRiderProfileInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRiderProfileInput, Prisma.UserUncheckedCreateWithoutRiderProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRiderProfileInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutRiderProfileNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRiderProfileInput, Prisma.UserUncheckedCreateWithoutRiderProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRiderProfileInput
+  upsert?: Prisma.UserUpsertWithoutRiderProfileInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRiderProfileInput, Prisma.UserUpdateWithoutRiderProfileInput>, Prisma.UserUncheckedUpdateWithoutRiderProfileInput>
+}
+
+export type UserCreateNestedOneWithoutDeliveriesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDeliveriesInput, Prisma.UserUncheckedCreateWithoutDeliveriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDeliveriesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutDeliveriesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDeliveriesInput, Prisma.UserUncheckedCreateWithoutDeliveriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDeliveriesInput
+  upsert?: Prisma.UserUpsertWithoutDeliveriesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDeliveriesInput, Prisma.UserUpdateWithoutDeliveriesInput>, Prisma.UserUncheckedUpdateWithoutDeliveriesInput>
+}
+
 export type UserCreateWithoutRolesInput = {
   id?: string
   email: string
@@ -717,6 +766,8 @@ export type UserCreateWithoutRolesInput = {
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryCreateNestedManyWithoutChangedByInput
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
 }
 
 export type UserUncheckedCreateWithoutRolesInput = {
@@ -741,6 +792,8 @@ export type UserUncheckedCreateWithoutRolesInput = {
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutChangedByInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
 }
 
 export type UserCreateOrConnectWithoutRolesInput = {
@@ -781,6 +834,8 @@ export type UserUpdateWithoutRolesInput = {
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUpdateManyWithoutChangedByNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRolesInput = {
@@ -805,6 +860,8 @@ export type UserUncheckedUpdateWithoutRolesInput = {
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
 }
 
 export type UserCreateWithoutRefreshTokensInput = {
@@ -829,6 +886,8 @@ export type UserCreateWithoutRefreshTokensInput = {
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryCreateNestedManyWithoutChangedByInput
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
 }
 
 export type UserUncheckedCreateWithoutRefreshTokensInput = {
@@ -853,6 +912,8 @@ export type UserUncheckedCreateWithoutRefreshTokensInput = {
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutChangedByInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
 }
 
 export type UserCreateOrConnectWithoutRefreshTokensInput = {
@@ -893,6 +954,8 @@ export type UserUpdateWithoutRefreshTokensInput = {
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUpdateManyWithoutChangedByNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRefreshTokensInput = {
@@ -917,6 +980,8 @@ export type UserUncheckedUpdateWithoutRefreshTokensInput = {
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
 }
 
 export type UserCreateWithoutOwnedRestaurantsInput = {
@@ -941,6 +1006,8 @@ export type UserCreateWithoutOwnedRestaurantsInput = {
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryCreateNestedManyWithoutChangedByInput
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
 }
 
 export type UserUncheckedCreateWithoutOwnedRestaurantsInput = {
@@ -965,6 +1032,8 @@ export type UserUncheckedCreateWithoutOwnedRestaurantsInput = {
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutChangedByInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
 }
 
 export type UserCreateOrConnectWithoutOwnedRestaurantsInput = {
@@ -1005,6 +1074,8 @@ export type UserUpdateWithoutOwnedRestaurantsInput = {
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUpdateManyWithoutChangedByNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOwnedRestaurantsInput = {
@@ -1029,6 +1100,8 @@ export type UserUncheckedUpdateWithoutOwnedRestaurantsInput = {
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
 }
 
 export type UserCreateWithoutStaffAssignmentsInput = {
@@ -1053,6 +1126,8 @@ export type UserCreateWithoutStaffAssignmentsInput = {
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryCreateNestedManyWithoutChangedByInput
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
 }
 
 export type UserUncheckedCreateWithoutStaffAssignmentsInput = {
@@ -1077,6 +1152,8 @@ export type UserUncheckedCreateWithoutStaffAssignmentsInput = {
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutChangedByInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
 }
 
 export type UserCreateOrConnectWithoutStaffAssignmentsInput = {
@@ -1117,6 +1194,8 @@ export type UserUpdateWithoutStaffAssignmentsInput = {
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUpdateManyWithoutChangedByNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStaffAssignmentsInput = {
@@ -1141,6 +1220,8 @@ export type UserUncheckedUpdateWithoutStaffAssignmentsInput = {
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
 }
 
 export type UserCreateWithoutCartInput = {
@@ -1165,6 +1246,8 @@ export type UserCreateWithoutCartInput = {
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryCreateNestedManyWithoutChangedByInput
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
 }
 
 export type UserUncheckedCreateWithoutCartInput = {
@@ -1189,6 +1272,8 @@ export type UserUncheckedCreateWithoutCartInput = {
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutChangedByInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
 }
 
 export type UserCreateOrConnectWithoutCartInput = {
@@ -1229,6 +1314,8 @@ export type UserUpdateWithoutCartInput = {
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUpdateManyWithoutChangedByNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCartInput = {
@@ -1253,6 +1340,8 @@ export type UserUncheckedUpdateWithoutCartInput = {
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
 }
 
 export type UserCreateWithoutAddressesInput = {
@@ -1277,6 +1366,8 @@ export type UserCreateWithoutAddressesInput = {
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryCreateNestedManyWithoutChangedByInput
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
 }
 
 export type UserUncheckedCreateWithoutAddressesInput = {
@@ -1301,6 +1392,8 @@ export type UserUncheckedCreateWithoutAddressesInput = {
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutChangedByInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
 }
 
 export type UserCreateOrConnectWithoutAddressesInput = {
@@ -1341,6 +1434,8 @@ export type UserUpdateWithoutAddressesInput = {
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUpdateManyWithoutChangedByNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAddressesInput = {
@@ -1365,6 +1460,8 @@ export type UserUncheckedUpdateWithoutAddressesInput = {
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
 }
 
 export type UserCreateWithoutOrdersInput = {
@@ -1389,6 +1486,8 @@ export type UserCreateWithoutOrdersInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryCreateNestedManyWithoutChangedByInput
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
 }
 
 export type UserUncheckedCreateWithoutOrdersInput = {
@@ -1413,6 +1512,8 @@ export type UserUncheckedCreateWithoutOrdersInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutChangedByInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
 }
 
 export type UserCreateOrConnectWithoutOrdersInput = {
@@ -1453,6 +1554,8 @@ export type UserUpdateWithoutOrdersInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUpdateManyWithoutChangedByNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -1477,6 +1580,8 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
 }
 
 export type UserCreateWithoutStatusHistoryEntriesInput = {
@@ -1501,6 +1606,8 @@ export type UserCreateWithoutStatusHistoryEntriesInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
 }
 
 export type UserUncheckedCreateWithoutStatusHistoryEntriesInput = {
@@ -1525,6 +1632,8 @@ export type UserUncheckedCreateWithoutStatusHistoryEntriesInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
 }
 
 export type UserCreateOrConnectWithoutStatusHistoryEntriesInput = {
@@ -1565,6 +1674,8 @@ export type UserUpdateWithoutStatusHistoryEntriesInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStatusHistoryEntriesInput = {
@@ -1589,6 +1700,8 @@ export type UserUncheckedUpdateWithoutStatusHistoryEntriesInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
 }
 
 export type UserCreateWithoutPaymentsInput = {
@@ -1613,6 +1726,8 @@ export type UserCreateWithoutPaymentsInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryCreateNestedManyWithoutChangedByInput
+  riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
 }
 
 export type UserUncheckedCreateWithoutPaymentsInput = {
@@ -1637,6 +1752,8 @@ export type UserUncheckedCreateWithoutPaymentsInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
 }
 
 export type UserCreateOrConnectWithoutPaymentsInput = {
@@ -1677,6 +1794,8 @@ export type UserUpdateWithoutPaymentsInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUpdateManyWithoutChangedByNestedInput
+  riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPaymentsInput = {
@@ -1701,6 +1820,248 @@ export type UserUncheckedUpdateWithoutPaymentsInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
+}
+
+export type UserCreateWithoutRiderProfileInput = {
+  id?: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  firstName: string
+  lastName: string
+  avatarUrl?: string | null
+  status?: $Enums.UserStatus
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  ownedRestaurants?: Prisma.RestaurantCreateNestedManyWithoutOwnerInput
+  staffAssignments?: Prisma.RestaurantStaffCreateNestedManyWithoutUserInput
+  addresses?: Prisma.AddressCreateNestedManyWithoutUserInput
+  cart?: Prisma.CartCreateNestedOneWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
+  statusHistoryEntries?: Prisma.OrderStatusHistoryCreateNestedManyWithoutChangedByInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
+}
+
+export type UserUncheckedCreateWithoutRiderProfileInput = {
+  id?: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  firstName: string
+  lastName: string
+  avatarUrl?: string | null
+  status?: $Enums.UserStatus
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  ownedRestaurants?: Prisma.RestaurantUncheckedCreateNestedManyWithoutOwnerInput
+  staffAssignments?: Prisma.RestaurantStaffUncheckedCreateNestedManyWithoutUserInput
+  addresses?: Prisma.AddressUncheckedCreateNestedManyWithoutUserInput
+  cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
+  statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
+}
+
+export type UserCreateOrConnectWithoutRiderProfileInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRiderProfileInput, Prisma.UserUncheckedCreateWithoutRiderProfileInput>
+}
+
+export type UserUpsertWithoutRiderProfileInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRiderProfileInput, Prisma.UserUncheckedUpdateWithoutRiderProfileInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRiderProfileInput, Prisma.UserUncheckedCreateWithoutRiderProfileInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutRiderProfileInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRiderProfileInput, Prisma.UserUncheckedUpdateWithoutRiderProfileInput>
+}
+
+export type UserUpdateWithoutRiderProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  ownedRestaurants?: Prisma.RestaurantUpdateManyWithoutOwnerNestedInput
+  staffAssignments?: Prisma.RestaurantStaffUpdateManyWithoutUserNestedInput
+  addresses?: Prisma.AddressUpdateManyWithoutUserNestedInput
+  cart?: Prisma.CartUpdateOneWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
+  statusHistoryEntries?: Prisma.OrderStatusHistoryUpdateManyWithoutChangedByNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
+}
+
+export type UserUncheckedUpdateWithoutRiderProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  ownedRestaurants?: Prisma.RestaurantUncheckedUpdateManyWithoutOwnerNestedInput
+  staffAssignments?: Prisma.RestaurantStaffUncheckedUpdateManyWithoutUserNestedInput
+  addresses?: Prisma.AddressUncheckedUpdateManyWithoutUserNestedInput
+  cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
+  statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
+}
+
+export type UserCreateWithoutDeliveriesInput = {
+  id?: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  firstName: string
+  lastName: string
+  avatarUrl?: string | null
+  status?: $Enums.UserStatus
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  ownedRestaurants?: Prisma.RestaurantCreateNestedManyWithoutOwnerInput
+  staffAssignments?: Prisma.RestaurantStaffCreateNestedManyWithoutUserInput
+  addresses?: Prisma.AddressCreateNestedManyWithoutUserInput
+  cart?: Prisma.CartCreateNestedOneWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
+  statusHistoryEntries?: Prisma.OrderStatusHistoryCreateNestedManyWithoutChangedByInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutDeliveriesInput = {
+  id?: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  firstName: string
+  lastName: string
+  avatarUrl?: string | null
+  status?: $Enums.UserStatus
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  ownedRestaurants?: Prisma.RestaurantUncheckedCreateNestedManyWithoutOwnerInput
+  staffAssignments?: Prisma.RestaurantStaffUncheckedCreateNestedManyWithoutUserInput
+  addresses?: Prisma.AddressUncheckedCreateNestedManyWithoutUserInput
+  cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
+  statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutDeliveriesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutDeliveriesInput, Prisma.UserUncheckedCreateWithoutDeliveriesInput>
+}
+
+export type UserUpsertWithoutDeliveriesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutDeliveriesInput, Prisma.UserUncheckedUpdateWithoutDeliveriesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutDeliveriesInput, Prisma.UserUncheckedCreateWithoutDeliveriesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutDeliveriesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutDeliveriesInput, Prisma.UserUncheckedUpdateWithoutDeliveriesInput>
+}
+
+export type UserUpdateWithoutDeliveriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  ownedRestaurants?: Prisma.RestaurantUpdateManyWithoutOwnerNestedInput
+  staffAssignments?: Prisma.RestaurantStaffUpdateManyWithoutUserNestedInput
+  addresses?: Prisma.AddressUpdateManyWithoutUserNestedInput
+  cart?: Prisma.CartUpdateOneWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
+  statusHistoryEntries?: Prisma.OrderStatusHistoryUpdateManyWithoutChangedByNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutDeliveriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  ownedRestaurants?: Prisma.RestaurantUncheckedUpdateManyWithoutOwnerNestedInput
+  staffAssignments?: Prisma.RestaurantStaffUncheckedUpdateManyWithoutUserNestedInput
+  addresses?: Prisma.AddressUncheckedUpdateManyWithoutUserNestedInput
+  cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
+  statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
 }
 
 
@@ -1717,6 +2078,7 @@ export type UserCountOutputType = {
   orders: number
   statusHistoryEntries: number
   payments: number
+  deliveries: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1728,6 +2090,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   orders?: boolean | UserCountOutputTypeCountOrdersArgs
   statusHistoryEntries?: boolean | UserCountOutputTypeCountStatusHistoryEntriesArgs
   payments?: boolean | UserCountOutputTypeCountPaymentsArgs
+  deliveries?: boolean | UserCountOutputTypeCountDeliveriesArgs
 }
 
 /**
@@ -1796,6 +2159,13 @@ export type UserCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.PaymentWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountDeliveriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DeliveryWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1820,6 +2190,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
   statusHistoryEntries?: boolean | Prisma.User$statusHistoryEntriesArgs<ExtArgs>
   payments?: boolean | Prisma.User$paymentsArgs<ExtArgs>
+  riderProfile?: boolean | Prisma.User$riderProfileArgs<ExtArgs>
+  deliveries?: boolean | Prisma.User$deliveriesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1882,6 +2254,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
   statusHistoryEntries?: boolean | Prisma.User$statusHistoryEntriesArgs<ExtArgs>
   payments?: boolean | Prisma.User$paymentsArgs<ExtArgs>
+  riderProfile?: boolean | Prisma.User$riderProfileArgs<ExtArgs>
+  deliveries?: boolean | Prisma.User$deliveriesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1899,6 +2273,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     orders: Prisma.$OrderPayload<ExtArgs>[]
     statusHistoryEntries: Prisma.$OrderStatusHistoryPayload<ExtArgs>[]
     payments: Prisma.$PaymentPayload<ExtArgs>[]
+    riderProfile: Prisma.$RiderProfilePayload<ExtArgs> | null
+    deliveries: Prisma.$DeliveryPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2317,6 +2693,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   orders<T extends Prisma.User$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   statusHistoryEntries<T extends Prisma.User$statusHistoryEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$statusHistoryEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderStatusHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   payments<T extends Prisma.User$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  riderProfile<T extends Prisma.User$riderProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$riderProfileArgs<ExtArgs>>): Prisma.Prisma__RiderProfileClient<runtime.Types.Result.GetResult<Prisma.$RiderProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  deliveries<T extends Prisma.User$deliveriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$deliveriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeliveryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2960,6 +3338,49 @@ export type User$paymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
+}
+
+/**
+ * User.riderProfile
+ */
+export type User$riderProfileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RiderProfile
+   */
+  select?: Prisma.RiderProfileSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RiderProfile
+   */
+  omit?: Prisma.RiderProfileOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RiderProfileInclude<ExtArgs> | null
+  where?: Prisma.RiderProfileWhereInput
+}
+
+/**
+ * User.deliveries
+ */
+export type User$deliveriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Delivery
+   */
+  select?: Prisma.DeliverySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Delivery
+   */
+  omit?: Prisma.DeliveryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DeliveryInclude<ExtArgs> | null
+  where?: Prisma.DeliveryWhereInput
+  orderBy?: Prisma.DeliveryOrderByWithRelationInput | Prisma.DeliveryOrderByWithRelationInput[]
+  cursor?: Prisma.DeliveryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DeliveryScalarFieldEnum | Prisma.DeliveryScalarFieldEnum[]
 }
 
 /**

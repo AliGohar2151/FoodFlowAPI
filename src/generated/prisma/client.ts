@@ -131,3 +131,13 @@ export type Payment = Prisma.PaymentModel
  * 
  */
 export type Refund = Prisma.RefundModel
+/**
+ * Model RiderProfile
+ * 
+ */
+export type RiderProfile = Prisma.RiderProfileModel
+/**
+ * Model Delivery
+ * 
+ */
+export type Delivery = Prisma.DeliveryModel

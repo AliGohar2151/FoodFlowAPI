@@ -10,6 +10,7 @@ import discoveryRoutes from "../modules/discovery/discovery.routes.js";
 import cartRoutes from "../modules/carts/carts.routes.js";
 import orderRoutes from "../modules/orders/orders.routes.js";
 import paymentRoutes from "../modules/payments/payments.routes.js";
+import deliveryRoutes from "../modules/deliveries/deliveries.routes.js";
 
 const router: IRouter = Router();
 
@@ -52,8 +53,10 @@ router.use("/orders", orderRoutes);
 // Payments module
 router.use("/payments", paymentRoutes);
 
+// Deliveries module
+router.use("/deliveries", deliveryRoutes);
+
 // ── Future modules (added per phase) ────────────────────────────────────────
-// router.use("/deliveries", deliveryRoutes);
 // router.use("/reviews", reviewRoutes);
 // router.use("/coupons", couponRoutes);
 
