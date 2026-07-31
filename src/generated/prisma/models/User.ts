@@ -258,6 +258,7 @@ export type UserWhereInput = {
   riderProfile?: Prisma.XOR<Prisma.RiderProfileNullableScalarRelationFilter, Prisma.RiderProfileWhereInput> | null
   deliveries?: Prisma.DeliveryListRelationFilter
   reviews?: Prisma.ReviewListRelationFilter
+  couponUsages?: Prisma.CouponUsageListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -286,6 +287,7 @@ export type UserOrderByWithRelationInput = {
   riderProfile?: Prisma.RiderProfileOrderByWithRelationInput
   deliveries?: Prisma.DeliveryOrderByRelationAggregateInput
   reviews?: Prisma.ReviewOrderByRelationAggregateInput
+  couponUsages?: Prisma.CouponUsageOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -317,6 +319,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   riderProfile?: Prisma.XOR<Prisma.RiderProfileNullableScalarRelationFilter, Prisma.RiderProfileWhereInput> | null
   deliveries?: Prisma.DeliveryListRelationFilter
   reviews?: Prisma.ReviewListRelationFilter
+  couponUsages?: Prisma.CouponUsageListRelationFilter
 }, "id" | "email" | "phone">
 
 export type UserOrderByWithAggregationInput = {
@@ -383,6 +386,7 @@ export type UserCreateInput = {
   riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -411,6 +415,7 @@ export type UserUncheckedCreateInput = {
   riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -439,6 +444,7 @@ export type UserUpdateInput = {
   riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -467,6 +473,7 @@ export type UserUncheckedUpdateInput = {
   riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -765,6 +772,20 @@ export type UserUpdateOneRequiredWithoutReviewsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewsInput, Prisma.UserUpdateWithoutReviewsInput>, Prisma.UserUncheckedUpdateWithoutReviewsInput>
 }
 
+export type UserCreateNestedOneWithoutCouponUsagesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCouponUsagesInput, Prisma.UserUncheckedCreateWithoutCouponUsagesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCouponUsagesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCouponUsagesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCouponUsagesInput, Prisma.UserUncheckedCreateWithoutCouponUsagesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCouponUsagesInput
+  upsert?: Prisma.UserUpsertWithoutCouponUsagesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCouponUsagesInput, Prisma.UserUpdateWithoutCouponUsagesInput>, Prisma.UserUncheckedUpdateWithoutCouponUsagesInput>
+}
+
 export type UserCreateWithoutRolesInput = {
   id?: string
   email: string
@@ -790,6 +811,7 @@ export type UserCreateWithoutRolesInput = {
   riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRolesInput = {
@@ -817,6 +839,7 @@ export type UserUncheckedCreateWithoutRolesInput = {
   riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRolesInput = {
@@ -860,6 +883,7 @@ export type UserUpdateWithoutRolesInput = {
   riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRolesInput = {
@@ -887,6 +911,7 @@ export type UserUncheckedUpdateWithoutRolesInput = {
   riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutRefreshTokensInput = {
@@ -914,6 +939,7 @@ export type UserCreateWithoutRefreshTokensInput = {
   riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRefreshTokensInput = {
@@ -941,6 +967,7 @@ export type UserUncheckedCreateWithoutRefreshTokensInput = {
   riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRefreshTokensInput = {
@@ -984,6 +1011,7 @@ export type UserUpdateWithoutRefreshTokensInput = {
   riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRefreshTokensInput = {
@@ -1011,6 +1039,7 @@ export type UserUncheckedUpdateWithoutRefreshTokensInput = {
   riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutOwnedRestaurantsInput = {
@@ -1038,6 +1067,7 @@ export type UserCreateWithoutOwnedRestaurantsInput = {
   riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutOwnedRestaurantsInput = {
@@ -1065,6 +1095,7 @@ export type UserUncheckedCreateWithoutOwnedRestaurantsInput = {
   riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutOwnedRestaurantsInput = {
@@ -1108,6 +1139,7 @@ export type UserUpdateWithoutOwnedRestaurantsInput = {
   riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOwnedRestaurantsInput = {
@@ -1135,6 +1167,7 @@ export type UserUncheckedUpdateWithoutOwnedRestaurantsInput = {
   riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutStaffAssignmentsInput = {
@@ -1162,6 +1195,7 @@ export type UserCreateWithoutStaffAssignmentsInput = {
   riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutStaffAssignmentsInput = {
@@ -1189,6 +1223,7 @@ export type UserUncheckedCreateWithoutStaffAssignmentsInput = {
   riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutStaffAssignmentsInput = {
@@ -1232,6 +1267,7 @@ export type UserUpdateWithoutStaffAssignmentsInput = {
   riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStaffAssignmentsInput = {
@@ -1259,6 +1295,7 @@ export type UserUncheckedUpdateWithoutStaffAssignmentsInput = {
   riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCartInput = {
@@ -1286,6 +1323,7 @@ export type UserCreateWithoutCartInput = {
   riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCartInput = {
@@ -1313,6 +1351,7 @@ export type UserUncheckedCreateWithoutCartInput = {
   riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCartInput = {
@@ -1356,6 +1395,7 @@ export type UserUpdateWithoutCartInput = {
   riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCartInput = {
@@ -1383,6 +1423,7 @@ export type UserUncheckedUpdateWithoutCartInput = {
   riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAddressesInput = {
@@ -1410,6 +1451,7 @@ export type UserCreateWithoutAddressesInput = {
   riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAddressesInput = {
@@ -1437,6 +1479,7 @@ export type UserUncheckedCreateWithoutAddressesInput = {
   riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAddressesInput = {
@@ -1480,6 +1523,7 @@ export type UserUpdateWithoutAddressesInput = {
   riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAddressesInput = {
@@ -1507,6 +1551,7 @@ export type UserUncheckedUpdateWithoutAddressesInput = {
   riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutOrdersInput = {
@@ -1534,6 +1579,7 @@ export type UserCreateWithoutOrdersInput = {
   riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutOrdersInput = {
@@ -1561,6 +1607,7 @@ export type UserUncheckedCreateWithoutOrdersInput = {
   riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutOrdersInput = {
@@ -1604,6 +1651,7 @@ export type UserUpdateWithoutOrdersInput = {
   riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -1631,6 +1679,7 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
   riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutStatusHistoryEntriesInput = {
@@ -1658,6 +1707,7 @@ export type UserCreateWithoutStatusHistoryEntriesInput = {
   riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutStatusHistoryEntriesInput = {
@@ -1685,6 +1735,7 @@ export type UserUncheckedCreateWithoutStatusHistoryEntriesInput = {
   riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutStatusHistoryEntriesInput = {
@@ -1728,6 +1779,7 @@ export type UserUpdateWithoutStatusHistoryEntriesInput = {
   riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStatusHistoryEntriesInput = {
@@ -1755,6 +1807,7 @@ export type UserUncheckedUpdateWithoutStatusHistoryEntriesInput = {
   riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPaymentsInput = {
@@ -1782,6 +1835,7 @@ export type UserCreateWithoutPaymentsInput = {
   riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPaymentsInput = {
@@ -1809,6 +1863,7 @@ export type UserUncheckedCreateWithoutPaymentsInput = {
   riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPaymentsInput = {
@@ -1852,6 +1907,7 @@ export type UserUpdateWithoutPaymentsInput = {
   riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPaymentsInput = {
@@ -1879,6 +1935,7 @@ export type UserUncheckedUpdateWithoutPaymentsInput = {
   riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutRiderProfileInput = {
@@ -1906,6 +1963,7 @@ export type UserCreateWithoutRiderProfileInput = {
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
   deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRiderProfileInput = {
@@ -1933,6 +1991,7 @@ export type UserUncheckedCreateWithoutRiderProfileInput = {
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
   deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRiderProfileInput = {
@@ -1976,6 +2035,7 @@ export type UserUpdateWithoutRiderProfileInput = {
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRiderProfileInput = {
@@ -2003,6 +2063,7 @@ export type UserUncheckedUpdateWithoutRiderProfileInput = {
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutDeliveriesInput = {
@@ -2030,6 +2091,7 @@ export type UserCreateWithoutDeliveriesInput = {
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
   riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutDeliveriesInput = {
@@ -2057,6 +2119,7 @@ export type UserUncheckedCreateWithoutDeliveriesInput = {
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
   riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutDeliveriesInput = {
@@ -2100,6 +2163,7 @@ export type UserUpdateWithoutDeliveriesInput = {
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
   riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDeliveriesInput = {
@@ -2127,6 +2191,7 @@ export type UserUncheckedUpdateWithoutDeliveriesInput = {
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
   riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReviewsInput = {
@@ -2154,6 +2219,7 @@ export type UserCreateWithoutReviewsInput = {
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
   riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReviewsInput = {
@@ -2181,6 +2247,7 @@ export type UserUncheckedCreateWithoutReviewsInput = {
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
   riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
   deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReviewsInput = {
@@ -2224,6 +2291,7 @@ export type UserUpdateWithoutReviewsInput = {
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
   riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewsInput = {
@@ -2251,6 +2319,135 @@ export type UserUncheckedUpdateWithoutReviewsInput = {
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
   riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
   deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutCouponUsagesInput = {
+  id?: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  firstName: string
+  lastName: string
+  avatarUrl?: string | null
+  status?: $Enums.UserStatus
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  ownedRestaurants?: Prisma.RestaurantCreateNestedManyWithoutOwnerInput
+  staffAssignments?: Prisma.RestaurantStaffCreateNestedManyWithoutUserInput
+  addresses?: Prisma.AddressCreateNestedManyWithoutUserInput
+  cart?: Prisma.CartCreateNestedOneWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
+  statusHistoryEntries?: Prisma.OrderStatusHistoryCreateNestedManyWithoutChangedByInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryCreateNestedManyWithoutRiderInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutCouponUsagesInput = {
+  id?: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  firstName: string
+  lastName: string
+  avatarUrl?: string | null
+  status?: $Enums.UserStatus
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  ownedRestaurants?: Prisma.RestaurantUncheckedCreateNestedManyWithoutOwnerInput
+  staffAssignments?: Prisma.RestaurantStaffUncheckedCreateNestedManyWithoutUserInput
+  addresses?: Prisma.AddressUncheckedCreateNestedManyWithoutUserInput
+  cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
+  statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  riderProfile?: Prisma.RiderProfileUncheckedCreateNestedOneWithoutUserInput
+  deliveries?: Prisma.DeliveryUncheckedCreateNestedManyWithoutRiderInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutCouponUsagesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCouponUsagesInput, Prisma.UserUncheckedCreateWithoutCouponUsagesInput>
+}
+
+export type UserUpsertWithoutCouponUsagesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCouponUsagesInput, Prisma.UserUncheckedUpdateWithoutCouponUsagesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCouponUsagesInput, Prisma.UserUncheckedCreateWithoutCouponUsagesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCouponUsagesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCouponUsagesInput, Prisma.UserUncheckedUpdateWithoutCouponUsagesInput>
+}
+
+export type UserUpdateWithoutCouponUsagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  ownedRestaurants?: Prisma.RestaurantUpdateManyWithoutOwnerNestedInput
+  staffAssignments?: Prisma.RestaurantStaffUpdateManyWithoutUserNestedInput
+  addresses?: Prisma.AddressUpdateManyWithoutUserNestedInput
+  cart?: Prisma.CartUpdateOneWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
+  statusHistoryEntries?: Prisma.OrderStatusHistoryUpdateManyWithoutChangedByNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUpdateManyWithoutRiderNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCouponUsagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  ownedRestaurants?: Prisma.RestaurantUncheckedUpdateManyWithoutOwnerNestedInput
+  staffAssignments?: Prisma.RestaurantStaffUncheckedUpdateManyWithoutUserNestedInput
+  addresses?: Prisma.AddressUncheckedUpdateManyWithoutUserNestedInput
+  cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
+  statusHistoryEntries?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  riderProfile?: Prisma.RiderProfileUncheckedUpdateOneWithoutUserNestedInput
+  deliveries?: Prisma.DeliveryUncheckedUpdateManyWithoutRiderNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -2269,6 +2466,7 @@ export type UserCountOutputType = {
   payments: number
   deliveries: number
   reviews: number
+  couponUsages: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2282,6 +2480,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   payments?: boolean | UserCountOutputTypeCountPaymentsArgs
   deliveries?: boolean | UserCountOutputTypeCountDeliveriesArgs
   reviews?: boolean | UserCountOutputTypeCountReviewsArgs
+  couponUsages?: boolean | UserCountOutputTypeCountCouponUsagesArgs
 }
 
 /**
@@ -2364,6 +2563,13 @@ export type UserCountOutputTypeCountReviewsArgs<ExtArgs extends runtime.Types.Ex
   where?: Prisma.ReviewWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCouponUsagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CouponUsageWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2391,6 +2597,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   riderProfile?: boolean | Prisma.User$riderProfileArgs<ExtArgs>
   deliveries?: boolean | Prisma.User$deliveriesArgs<ExtArgs>
   reviews?: boolean | Prisma.User$reviewsArgs<ExtArgs>
+  couponUsages?: boolean | Prisma.User$couponUsagesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -2456,6 +2663,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   riderProfile?: boolean | Prisma.User$riderProfileArgs<ExtArgs>
   deliveries?: boolean | Prisma.User$deliveriesArgs<ExtArgs>
   reviews?: boolean | Prisma.User$reviewsArgs<ExtArgs>
+  couponUsages?: boolean | Prisma.User$couponUsagesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -2476,6 +2684,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     riderProfile: Prisma.$RiderProfilePayload<ExtArgs> | null
     deliveries: Prisma.$DeliveryPayload<ExtArgs>[]
     reviews: Prisma.$ReviewPayload<ExtArgs>[]
+    couponUsages: Prisma.$CouponUsagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2897,6 +3106,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   riderProfile<T extends Prisma.User$riderProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$riderProfileArgs<ExtArgs>>): Prisma.Prisma__RiderProfileClient<runtime.Types.Result.GetResult<Prisma.$RiderProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   deliveries<T extends Prisma.User$deliveriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$deliveriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeliveryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reviews<T extends Prisma.User$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  couponUsages<T extends Prisma.User$couponUsagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$couponUsagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CouponUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3607,6 +3817,30 @@ export type User$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.ReviewScalarFieldEnum | Prisma.ReviewScalarFieldEnum[]
+}
+
+/**
+ * User.couponUsages
+ */
+export type User$couponUsagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CouponUsage
+   */
+  select?: Prisma.CouponUsageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CouponUsage
+   */
+  omit?: Prisma.CouponUsageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CouponUsageInclude<ExtArgs> | null
+  where?: Prisma.CouponUsageWhereInput
+  orderBy?: Prisma.CouponUsageOrderByWithRelationInput | Prisma.CouponUsageOrderByWithRelationInput[]
+  cursor?: Prisma.CouponUsageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CouponUsageScalarFieldEnum | Prisma.CouponUsageScalarFieldEnum[]
 }
 
 /**

@@ -12,6 +12,7 @@ import orderRoutes from "../modules/orders/orders.routes.js";
 import paymentRoutes from "../modules/payments/payments.routes.js";
 import deliveryRoutes from "../modules/deliveries/deliveries.routes.js";
 import reviewRoutes from "../modules/reviews/reviews.routes.js";
+import couponRoutes from "../modules/coupons/coupons.routes.js";
 
 const router: IRouter = Router();
 
@@ -60,7 +61,7 @@ router.use("/deliveries", deliveryRoutes);
 // Reviews & Ratings module
 router.use("/reviews", reviewRoutes);
 
-// ── Future modules (added per phase) ────────────────────────────────────────
-// router.use("/coupons", couponRoutes);
+// Coupons and Promotions module
+router.use("/coupons", couponRoutes);
 
 export default router;
