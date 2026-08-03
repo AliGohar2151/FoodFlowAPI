@@ -231,6 +231,7 @@ model Restaurant {
   @@index([ownerId])
   @@index([status])
   @@index([slug])
+  @@index([status, isOpen])
   @@map("restaurants")
 }
 
@@ -296,6 +297,7 @@ model MenuItem {
 
   @@index([restaurantId])
   @@index([categoryId])
+  @@index([restaurantId, categoryId, isAvailable])
   @@map("menu_items")
 }
 
@@ -394,6 +396,8 @@ model Order {
   @@index([restaurantId])
   @@index([riderId])
   @@index([status])
+  @@index([userId, createdAt])
+  @@index([restaurantId, status])
   @@map("orders")
 }
 

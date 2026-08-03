@@ -1,6 +1,7 @@
 import express, { type Application } from "express";
 import helmet from "helmet";
 import cors from "cors";
+import compression from "compression";
 import { rateLimit } from "express-rate-limit";
 
 import { config } from "./config/index.js";
@@ -23,6 +24,9 @@ app.set("trust proxy", 1);
 
 // Disable explicit Express framework header
 app.disable("x-powered-by");
+
+// Response compression (gzip / brotli)
+app.use(compression());
 
 // Attach unique request ID to every request
 app.use(requestIdMiddleware);

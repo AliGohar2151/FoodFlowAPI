@@ -16,6 +16,9 @@ declare global {
 function createPrismaClient(): PrismaClient {
   const pool = new pg.Pool({
     connectionString: config.db.url,
+    max: process.env["DB_POOL_MAX"] ? Number(process.env["DB_POOL_MAX"]) : 20,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 5000,
   });
   const adapter = new PrismaPg(pool);
 
