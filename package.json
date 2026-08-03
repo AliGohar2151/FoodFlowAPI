@@ -10,6 +10,8 @@
   },
   "scripts": {
     "dev": "tsx watch --env-file=.env src/server.ts",
+    "worker": "node dist/worker.js",
+    "worker:dev": "tsx watch --env-file=.env src/worker.ts",
     "build": "tsc --project tsconfig.json",
     "start": "node dist/server.js",
     "typecheck": "tsc --noEmit",
@@ -22,10 +24,14 @@
     "test:coverage": "vitest run --coverage",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
+    "db:migrate": "prisma migrate deploy",
     "db:seed": "tsx --env-file=.env prisma/seed.ts",
     "db:studio": "prisma studio",
     "docker:up": "docker compose up -d",
+    "docker:up:infra": "docker compose up -d postgres redis",
     "docker:down": "docker compose down",
+    "docker:down:volumes": "docker compose down -v",
+    "docker:build": "docker compose build",
     "docker:logs": "docker compose logs -f",
     "lint-staged": "lint-staged",
     "prepare": "husky"

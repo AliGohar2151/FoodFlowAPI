@@ -1,0 +1,59 @@
+# ── Docker ignore ──────────────────────────────────────────────────────────────
+# Files and directories excluded from Docker build context.
+# Keep this list comprehensive to minimize image size and build time.
+
+# ── Dependencies ───────────────────────────────────────────────────────────────
+node_modules/
+.pnpm-store/
+
+# ── Build output ───────────────────────────────────────────────────────────────
+dist/
+
+# ── Environment & Secrets ──────────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+
+# ── Version Control ────────────────────────────────────────────────────────────
+.git/
+.gitignore
+
+# ── IDE & Editor ───────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Tests ──────────────────────────────────────────────────────────────────────
+tests/
+coverage/
+vitest.config.ts
+*.test.ts
+*.spec.ts
+
+# ── Documentation ─────────────────────────────────────────────────────────────
+docs/
+*.md
+!README.md
+
+# ── OS Files ──────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Logs ──────────────────────────────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# ── Docker files (avoid recursive copy) ───────────────────────────────────────
+Dockerfile
+Dockerfile.*
+docker-compose*.yml
+.dockerignore
+
+# ── Misc ──────────────────────────────────────────────────────────────────────
+.cache/
+*.tgz
+prisma/*.db
+prisma/*.db-journal

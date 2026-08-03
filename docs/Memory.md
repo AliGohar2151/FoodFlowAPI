@@ -402,9 +402,9 @@ Phase 22 — Background Jobs           COMPLETE
 Phase 23 — Audit Logs                COMPLETE
 Phase 24 — Caching                   COMPLETE
 Phase 25 — API Documentation         COMPLETE
-Phase 26 — Testing                   NOT STARTED
-Phase 27 — Docker                    NOT STARTED
-Phase 28 — CI/CD                     NOT STARTED
+Phase 26 — Testing                   COMPLETE
+Phase 27 — Docker                    COMPLETE
+Phase 28 — CI/CD                     COMPLETE
 Phase 29 — Production Hardening      NOT STARTED
 Phase 30 — Observability             NOT STARTED
 Phase 31 — Performance               NOT STARTED
@@ -417,32 +417,29 @@ Phase 33 — Final Documentation       NOT STARTED
 # 6. Current Development Phase
 
 ```text
-Current Phase: Phase 26 — Testing Module
+Current Phase: Phase 29 — Production Hardening
 Current Status: NOT STARTED
 ```
 
-Phases 1 through 25 are complete. API Documentation Module (OpenAPI 3.0.3 spec in `src/docs/swagger.json`, `swagger-ui-express` mounting at `/docs`, Bearer JWT authentication definitions, schemas for error/success responses, and interactive route testing) is fully implemented, verified, and test-covered.
+Phases 1 through 28 are complete. CI/CD Pipeline (Phase 28) is fully implemented:
+- `.github/workflows/ci.yml` — Automated code formatting check (`prettier`), ESLint, TypeScript typecheck, Vitest unit & integration tests, and build artifact verification
+- `.github/workflows/docker.yml` — Automated Docker build, metadata generation, GHA caching, and GHCR container registry publishing
+- Prettier auto-formatting applied to all codebase files ensuring `pnpm format:check` clean pass
 
-Next implementation task: Phase 26 — Testing Module (End-to-end integration workflows across cart-to-order-to-payment-to-delivery lifecycle, performance benchmarking, edge-case coverage).
+Next implementation task: Phase 29 — Production Hardening (Security headers with Helmet, rate limiting per IP/Route, strict request sanitization, graceful termination handling, production logging adjustments).
 
 The first implementation milestone is:
 
 ```text
-Create Project
+Configure Helmet Security Headers
     ↓
-Configure TypeScript
+Configure Strict Rate Limiting
     ↓
-Configure ESLint
+Configure Request Body Size Limits
     ↓
-Configure Prettier
+Configure Production Environment Safeguards
     ↓
-Configure Git Hooks
-    ↓
-Configure Environment
-    ↓
-Start Express Server
-    ↓
-Create Health Endpoint
+Verify Security Middleware via Tests
 ```
 
 ---
@@ -452,40 +449,16 @@ Create Health Endpoint
 The next task is:
 
 ```text
-Initialize FoodFlow API repository.
+Implement Phase 29 — Production Hardening.
 ```
 
-Expected initial structure:
+Expected files/modules to configure:
 
 ```text
-foodflow-api/
-│
-├── src/
-│   ├── app.ts
-│   ├── server.ts
-│   │
-│   ├── config/
-│   │
-│   ├── common/
-│   │
-│   ├── infrastructure/
-│   │
-│   ├── modules/
-│   │
-│   └── routes/
-│
-├── tests/
-│
-├── .env.example
-├── .gitignore
-├── package.json
-├── tsconfig.json
-├── eslint.config.*
-├── prettier.config.*
-└── README.md
+src/app.ts                     — Helmet security headers, trust proxy, body limits
+src/common/middleware/        — Rate limiters, security sanitizer
+src/config/env.ts              — Production secret verification
 ```
-
-Do not implement authentication, RBAC, database models, or business modules before the project foundation is ready.
 
 ---
 
@@ -1571,60 +1544,128 @@ Memory.md
 Status:
 
 ```text
-NOT STARTED
+COMPLETE
 ```
 
-Next:
+Completed:
 
 ```text
-Initialize Node.js + TypeScript project.
+src/app.ts
+src/server.ts
+src/config/
+src/common/
+src/infrastructure/
+src/modules/
+src/routes/
+package.json
+tsconfig.json
+eslint.config.js
+prettier.config.js
+.gitignore
+.env.example
+README.md
+vitest.config.ts
+```
+
+---
+
+## Phase 26 — Testing
+
+Status:
+
+```text
+COMPLETE
+```
+
+Completed:
+
+```text
+28 test files — 246 tests — 246 passing
+
+New test files added:
+  tests/auth.test.ts              — 22 tests (all auth schemas)
+  tests/price-calculations.test.ts — 22 tests (subtotal, tax, total, coupon discount)
+  tests/vendor-isolation.test.ts  — 9 tests (cross-restaurant isolation)
+  tests/authorization-policies.test.ts — 34 tests (UserPolicy, RestaurantPolicy, OrderPolicy)
+  tests/order-lifecycle.test.ts   — 23 tests (full state machine lifecycle)
+  tests/error-classes.test.ts     — 20 tests (all custom error types)
+  tests/rbac-permissions.test.ts  — 19 tests (role schema + permission conventions)
+  tests/e2e-workflows.test.ts     — 28 tests (Customer/Restaurant/Rider journeys)
+```
+
+---
+
+## Phase 27 — Dockerization
+
+Status:
+
+```text
+COMPLETE
+```
+
+Completed:
+
+```text
+Dockerfile (multi-stage Node 22 Alpine)
+docker-compose.yml (PostgreSQL 17, Redis 7, API, Worker)
+docker-compose.dev.yml (hot-reload development override)
+.dockerignore
+src/worker.ts (standalone worker process)
+```
+
+---
+
+## Phase 28 — CI/CD
+
+Status:
+
+```text
+COMPLETE
+```
+
+Completed:
+
+```text
+.github/workflows/ci.yml (prettier check, eslint, typecheck, vitest tests, build verification)
+.github/workflows/docker.yml (docker build, metadata, GHA caching, GHCR publishing)
 ```
 
 ---
 
 # 33. Immediate Next Steps
 
-The implementation sequence begins with:
+The implementation sequence for Phase 29 — Production Hardening:
 
 ```text
-1. Initialize pnpm project
-2. Install TypeScript
-3. Configure strict TypeScript
-4. Install Express
-5. Configure ESLint
-6. Configure Prettier
-7. Configure Husky
-8. Create environment configuration
-9. Create Express application
-10. Create server bootstrap
-11. Create health endpoints
-12. Add graceful shutdown
-13. Add initial tests
-14. Commit foundation
+1. Configure Helmet security headers in app.ts
+2. Configure strict rate limiting (IP & route-level)
+3. Configure request body size limits
+4. Configure production environment secret enforcement
+5. Verify security middleware via tests
 ```
 
-After Phase 1:
+After Phase 29:
 
 ```text
-Phase 2 — Core Application Infrastructure
+Phase 30 — Observability
 ```
 
 Then:
 
 ```text
-Phase 3 — PostgreSQL + Prisma
+Phase 29 — Production Hardening
 ```
 
 Then:
 
 ```text
-Phase 4 — Redis
+Phase 30 — Observability
 ```
 
 Then:
 
 ```text
-Phase 5 — Authentication
+Phase 31 — Performance
 ```
 
 Then:
@@ -1673,16 +1714,16 @@ Architecture:
 Modular Monolith
 
 Current Phase:
-Phase 1 — Project Foundation
+Phase 29 — Production Hardening
 
 Current Status:
-Ready to Begin Implementation
+NOT STARTED
 
 Last Completed:
-Planning and Technical Design
+Phase 28 — CI/CD (GitHub Actions workflows for CI checks & Docker build/push)
 
 Next Task:
-Initialize Node.js + TypeScript Project
+Configure Helmet security headers, rate limiting, and production hardening in Express app
 
 Primary Goal:
 Build a production-grade multi-vendor food delivery backend.
