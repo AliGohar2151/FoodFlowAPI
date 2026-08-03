@@ -8,6 +8,7 @@ import apiRouter from "./routes/index.js";
 import swaggerRouter from "./docs/swagger.js";
 import {
   requestIdMiddleware,
+  requestLogger,
   notFoundHandler,
   globalErrorHandler,
   globalRateLimiter,
@@ -25,6 +26,9 @@ app.disable("x-powered-by");
 
 // Attach unique request ID to every request
 app.use(requestIdMiddleware);
+
+// Structured request performance logger
+app.use(requestLogger);
 
 // Set secure HTTP headers via Helmet
 app.use(

@@ -15,3 +15,4 @@ export {
   authRateLimiter,
   sensitiveOpsLimiter,
 } from "./rate-limiters.js";
+export { requestLogger } from "./request-logger.js";

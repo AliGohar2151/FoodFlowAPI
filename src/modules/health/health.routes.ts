@@ -75,4 +75,35 @@ router.get(
   }),
 );
 
+/**
+ * GET /health/metrics
+ * System & Application Observability Metrics Endpoint.
+ * Returns process memory usage, uptime, CPU usage, and environment state.
+ */
+router.get("/metrics", (_req: Request, res: Response) => {
+  const memoryUsage = process.memoryUsage();
+  const bytesToMb = (bytes: number) => Math.round((bytes / 1024 / 1024) * 100) / 100;
+
+  const metrics = {
+    timestamp: new Date().toISOString(),
+    uptimeSeconds: Math.floor(process.uptime()),
+    process: {
+      pid: process.pid,
+      nodeVersion: process.version,
+      platform: process.platform,
+      arch: process.arch,
+    },
+    memoryMb: {
+      rss: bytesToMb(memoryUsage.rss),
+      heapTotal: bytesToMb(memoryUsage.heapTotal),
+      heapUsed: bytesToMb(memoryUsage.heapUsed),
+      external: bytesToMb(memoryUsage.external),
+      arrayBuffers: bytesToMb(memoryUsage.arrayBuffers ?? 0),
+    },
+    cpuUsage: process.cpuUsage(),
+  };
+
+  sendSuccess(res, metrics, { message: "System observability metrics" });
+});
+
 export default router;
