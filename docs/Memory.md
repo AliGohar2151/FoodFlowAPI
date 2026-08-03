@@ -405,7 +405,7 @@ Phase 25 — API Documentation         COMPLETE
 Phase 26 — Testing                   COMPLETE
 Phase 27 — Docker                    COMPLETE
 Phase 28 — CI/CD                     COMPLETE
-Phase 29 — Production Hardening      NOT STARTED
+Phase 29 — Production Hardening      COMPLETE
 Phase 30 — Observability             NOT STARTED
 Phase 31 — Performance               NOT STARTED
 Phase 32 — Security Review           NOT STARTED
@@ -417,30 +417,29 @@ Phase 33 — Final Documentation       NOT STARTED
 # 6. Current Development Phase
 
 ```text
-Current Phase: Phase 29 — Production Hardening
+Current Phase: Phase 30 — Observability
 Current Status: NOT STARTED
 ```
 
-Phases 1 through 28 are complete. CI/CD Pipeline (Phase 28) is fully implemented:
+Phases 1 through 29 are complete. Production Hardening (Phase 29) is fully implemented:
+- Strict rate limiters (`globalRateLimiter`, `authRateLimiter`, `sensitiveOpsLimiter`) in `src/common/middleware/rate-limiters.ts`
+- Applied `authRateLimiter` to public auth routes (`/auth/register`, `/auth/login`) for brute-force protection
+- Express production security in `src/app.ts`: enabled `trust proxy` (1), disabled `x-powered-by`, hardened Helmet headers, reduced body limit to 1mb
+- Enforced production secret safety in `src/config/env.ts` blocking default placeholder JWT secrets in production
+- Added comprehensive unit tests in `tests/production-hardening.test.ts` (252 total tests passing across 29 files)
 
-- `.github/workflows/ci.yml` — Automated code formatting check (`prettier`), ESLint, TypeScript typecheck, Vitest unit & integration tests, and build artifact verification
-- `.github/workflows/docker.yml` — Automated Docker build, metadata generation, GHA caching, and GHCR container registry publishing
-- Prettier auto-formatting applied to all codebase files ensuring `pnpm format:check` clean pass
-
-Next implementation task: Phase 29 — Production Hardening (Security headers with Helmet, rate limiting per IP/Route, strict request sanitization, graceful termination handling, production logging adjustments).
+Next implementation task: Phase 30 — Observability (Structured JSON logging, request tracing, health metrics, error reporting).
 
 The first implementation milestone is:
 
 ```text
-Configure Helmet Security Headers
+Configure Health Liveness & Readiness Metrics
     ↓
-Configure Strict Rate Limiting
+Configure Request Performance Logger
     ↓
-Configure Request Body Size Limits
+Configure Metrics Collector Endpoint
     ↓
-Configure Production Environment Safeguards
-    ↓
-Verify Security Middleware via Tests
+Verify Observability Endpoints via Tests
 ```
 
 ---
@@ -450,15 +449,14 @@ Verify Security Middleware via Tests
 The next task is:
 
 ```text
-Implement Phase 29 — Production Hardening.
+Implement Phase 30 — Observability.
 ```
 
 Expected files/modules to configure:
 
 ```text
-src/app.ts                     — Helmet security headers, trust proxy, body limits
-src/common/middleware/        — Rate limiters, security sanitizer
-src/config/env.ts              — Production secret verification
+src/common/middleware/        — Request performance duration tracker
+src/modules/health/           — Detailed liveness, readiness, uptime, and database/redis status metrics
 ```
 
 ---

@@ -10,19 +10,29 @@ import {
   requestIdMiddleware,
   notFoundHandler,
   globalErrorHandler,
+  globalRateLimiter,
 } from "./common/middleware/index.js";
 
 const app: Application = express();
 
-// ── Security Middleware ──────────────────────────────────────────────────────
+// ── Production Security & Proxy Configuration ──────────────────────────────
+
+// Enable trust proxy for reverse-proxies (Nginx, Cloudflare, AWS ALB)
+app.set("trust proxy", 1);
+
+// Disable explicit Express framework header
+app.disable("x-powered-by");
 
 // Attach unique request ID to every request
 app.use(requestIdMiddleware);
 
-// Set secure HTTP headers
+// Set secure HTTP headers via Helmet
 app.use(
   helmet({
-    contentSecurityPolicy: false, // Disabled for Swagger UI assets inline styling
+    contentSecurityPolicy: false, // Disabled for Swagger UI inline CSS/JS
+    crossOriginEmbedderPolicy: false,
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+    referrerPolicy: { policy: "strict-origin-when-cross-origin" },
   }),
 );
 
@@ -36,25 +46,13 @@ app.use(
   }),
 );
 
-// Rate limiting
-app.use(
-  rateLimit({
-    windowMs: config.rateLimit.windowMs,
-    max: config.rateLimit.max,
-    standardHeaders: true,
-    legacyHeaders: false,
-    message: {
-      success: false,
-      message: "Too many requests, please try again later",
-      error: { code: "TOO_MANY_REQUESTS", details: null },
-    },
-  }),
-);
+// Global rate limiting
+app.use(globalRateLimiter);
 
 // ── Body Parsing ─────────────────────────────────────────────────────────────
 
-app.use(express.json({ limit: "10mb" }));
-app.use(express.urlencoded({ extended: true, limit: "10mb" }));
+app.use(express.json({ limit: "1mb" }));
+app.use(express.urlencoded({ extended: true, limit: "1mb" }));
 
 // ── API Documentation & Routes ───────────────────────────────────────────────
 

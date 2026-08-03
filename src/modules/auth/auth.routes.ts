@@ -6,19 +6,26 @@ import {
   refreshTokenSchema,
   changePasswordSchema,
 } from "./auth.schema.js";
-import { validate, asyncHandler, authenticate } from "../../common/middleware/index.js";
+import {
+  validate,
+  asyncHandler,
+  authenticate,
+  authRateLimiter,
+} from "../../common/middleware/index.js";
 
 const router: IRouter = Router();
 
 // Public auth endpoints
 router.post(
   "/register",
+  authRateLimiter,
   validate({ body: registerSchema }),
   asyncHandler((req, res) => authController.register(req, res)),
 );
 
 router.post(
   "/login",
+  authRateLimiter,
   validate({ body: loginSchema }),
   asyncHandler((req, res) => authController.login(req, res)),
 );

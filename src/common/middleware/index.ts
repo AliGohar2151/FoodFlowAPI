@@ -10,3 +10,8 @@ export {
   getUserRolesAndPermissions,
   invalidateUserPermissionsCache,
 } from "./authorize.js";
+export {
+  globalRateLimiter,
+  authRateLimiter,
+  sensitiveOpsLimiter,
+} from "./rate-limiters.js";

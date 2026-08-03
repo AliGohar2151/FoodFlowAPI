@@ -48,7 +48,29 @@ function validateEnv(): Env {
     process.exit(1);
   }
 
-  return result.data;
+  const parsedEnv = result.data;
+
+  // Enforce production security checks
+  if (parsedEnv.NODE_ENV === "production") {
+    const defaultPlaceholders = [
+      "change-this-to-a-long-random-secret",
+      "change-this-to-another-long-random-secret",
+      "change-this-to-a-long-random-secret-min-32-chars",
+      "change-this-to-another-long-random-secret-min-32-chars",
+    ];
+
+    if (
+      defaultPlaceholders.includes(parsedEnv.JWT_ACCESS_SECRET) ||
+      defaultPlaceholders.includes(parsedEnv.JWT_REFRESH_SECRET)
+    ) {
+      console.error(
+        "❌ FATAL: Placeholder JWT secrets detected in production environment! Change JWT_ACCESS_SECRET and JWT_REFRESH_SECRET in .env",
+      );
+      process.exit(1);
+    }
+  }
+
+  return parsedEnv;
 }
 
 export const env = validateEnv();
